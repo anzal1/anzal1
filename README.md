@@ -1,4 +1,4 @@
-### Hi there, I'm <a href="https://anzalabidi.netlify.app" target="_blank">Anzal Husain Abidi</a> <img src="https://i.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.webp" width="25px">
+### Hi there, I'm <a href="https://anzalabidi.netlify.app" target="_blank">Anzal Husain Abidi</a> <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px">
 
 [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-0e76a8?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/anzal-husain-abidi-740a40204/)
 [![Website Badge](https://img.shields.io/badge/Website-3b5998?style=flat-square&logo=google-chrome&logoColor=white)](https://anzalabidi.netlify.app)
@@ -12,7 +12,7 @@ I am a full-stack web developer and a competitive coder. I love programming, wri
 
  I enjoy using my obsessive attention to detail, my unequivocal love for making things that change the world. That's why I like to make things that make a difference.
 
-<img align="right" alt="GIF" src="https://github.com/anzal1/anzal1/blob/main/coding.gif?raw=true" width="408" height="318" />
+<img align="right" alt="GIF" src="https://i.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.webp" width="408" height="318" />
   
 
 **Talking about Personal Stuffs:**
