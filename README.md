@@ -1,4 +1,4 @@
-### Hi there, I'm <a href="https://anzalabidi.netlify.app" target="_blank">Anzal Husain Abidi</a><img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px" height="25px">
+### Hi there, I'm <a href="https://anzalabidi.netlify.app" target="_blank">Anzal Husain Abidi</a>&nbsp;<img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px" height="25px">
 
 [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-0e76a8?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/anzal-husain-abidi-740a40204/)
 [![Website Badge](https://img.shields.io/badge/Website-3b5998?style=flat-square&logo=google-chrome&logoColor=white)](https://anzalabidi.netlify.app)
