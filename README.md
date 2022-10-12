@@ -12,7 +12,7 @@ I am a full-stack web developer and a competitive coder. I love programming, wri
 
  I enjoy using my obsessive attention to detail, my unequivocal love for making things that change the world. That's why I like to make things that make a difference.
 
-<img align="right" alt="GIF" src="https://i.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.webp" width="408" height="318" border-radius="20%" />
+<img align="right" alt="GIF" src="https://i.pinimg.com/originals/18/a4/94/18a4949fc9c8067172d3b96e302e7097.gif" width="408" height="318" border-radius="20%" />
   
 
 **Talking about Personal Stuffs:**
