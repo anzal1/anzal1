@@ -5,9 +5,13 @@
 [![Twitter Badge](https://img.shields.io/badge/-Twitter-00acee?style=flat-square&logo=Twitter&logoColor=white)](https://twitter.com/AnzalAbidi)
 [![Instagram Badge](https://img.shields.io/badge/-Instagram-e4405f?style=flat-square&logo=Instagram&logoColor=white)](https://instagram.com/anzalabidi/)
 
- <p align="center">
-<img   alt="GIF" src="https://monophy.com/media/cmCEsJZHYBPels360q/monophy.gif" width="50%" height="50%"  />
-<img   alt="GIF" src="https://i.pinimg.com/originals/18/a4/94/18a4949fc9c8067172d3b96e302e7097.gif" width="50%" height="50%"  />
+ <p align="center" display="flex">
+ <p>
+<img   alt="GIF" src="https://monophy.com/media/cmCEsJZHYBPels360q/monophy.gif" width="50%" height="50%"  flex="0.5" />
+</p>
+ <p>
+  <img   alt="GIF" src="https://i.pinimg.com/originals/18/a4/94/18a4949fc9c8067172d3b96e302e7097.gif" width="50%" height="50%" flex="0.5"  />
+</p>
 </p>
 
 ### Glad to see you here! &nbsp; ![](https://visitor-badge.glitch.me/badge?page_id=anzal1.anzal1)
