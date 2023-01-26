@@ -25,7 +25,7 @@ I enjoy using my obsessive attention to detail, my unequivocal love for making t
 - 👨🏻‍💻 I’m currently working on something cool;
 - 🚀 I’m currently learning Data Structures and Algorithms
 - 💬 Ask me about anything, I am happy to help;
-- 📝 I regulary write blogs on [geeky-blogs](https://geeky-blogs.netlify.app/);
+- 📝 I regulary write blogs on [Lucifer](https://anzal.hashnode.dev/);
 - 📫 How to reach me: cofclan145@gmail.com;
 - 📝 [Resume](https://anzalabidi.netlify.app/#/).
 
