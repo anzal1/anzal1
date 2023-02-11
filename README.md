@@ -8,7 +8,7 @@
 
 <p float="left" >
 <img   alt="GIF" src="https://i.pinimg.com/originals/18/a4/94/18a4949fc9c8067172d3b96e302e7097.gif" width="350px" height="250px"/>
-<img  alt="GIF" src="https://monophy.com/media/cmCEsJZHYBPels360q/monophy.gif" width="250px" height="250px"/>
+<img  alt="GIF" src="https://camo.githubusercontent.com/63371d36886ee658f5a97401f393e1ab1684b2fd3de674b8f5efc7d410b2a3d0/68747470733a2f2f6d656469612e67697068792e636f6d2f6d656469612f57556c706c634d704f43456d5447427442572f67697068792e676966" width="350px" height="250px"/>
 </p>
 
 ### Glad to see you here! &nbsp; ![](https://visitor-badge.glitch.me/badge?page_id=anzal1.anzal1)
