@@ -49,10 +49,13 @@ I enjoy using my obsessive attention to detail, my unequivocal love for making t
 
 📈 **My GitHub Stats:**
 
-<p>
+| <a href="https://github.com/anzal1"><img align="center" src="https://github-readme-stats.vercel.app/api?username=anzal1&show_icons=true&include_all_commits=true&theme=dracula&hide_border=true" alt="Anurag's github stats" /></a> | <a href="https://github.com/anzal1"><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=anzal1&layout=compact&theme=dracula&hide_border=true" /></a> |
+| ------------- | ------------- |
+<!-- <p>
+ 
   <img  src="https://github-readme-stats.vercel.app/api?username=anzal1&theme=dracula&show_icons=true&hide_border=true&&count_private=true&include_all_commits=true"/>
  <img  src="https://github-readme-stats.vercel.app/api/top-langs/?username=anzal1&exclude_repo=KNN-Image-Classification&theme=dracula&show_icons=true&hide_border=true&layout=compact"/>
-</p>
+</p> -->
 
 
 
