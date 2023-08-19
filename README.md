@@ -12,7 +12,7 @@ I enjoy transforming complex problems into simple and intuitive solutions. Wheth
 - 💬 Ask me about anything, I am happy to help<br><br>
 - 📝 I regularly write blogs on [Lucifer](https://anzal.hashnode.dev/)<br><br>
 - 📫 How to reach me: cofclan145@gmail.com<br><br>
-- 📝 [Resume](https://drive.google.com/file/d/12RaN8lNljaJijgyacwNFjZJk7o_ltA8j/view).
+- 📝 [Resume](https://drive.google.com/file/d/1ZNwVTRo56HmF_VmlkukYUd4u942CDosL/view?usp=drive_link).
 
 ## 🌐 Socials:
 
