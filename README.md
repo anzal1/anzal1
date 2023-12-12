@@ -6,7 +6,7 @@ Hi there! 👋 I'm [Anzal Husain Abidi](https://anzalabidi.netlify.app), a passi
 
 I enjoy transforming complex problems into simple and intuitive solutions. Whether it's designing pixel-perfect user interfaces or crafting efficient code, I take pride in delivering high-quality websites that align with the latest industry standards.
 
-- 👨🏻‍💻 I’m currently working on Orca, a platform for developing inovative software solutions<br><br>
+- 👨🏻‍💻 I’m currently working on Orca, a platform for developing innovative software solutions<br><br>
 - 🚀 I’m currently learning Rust and Java Spring boot<br><br>
 - 👨‍💻 All of my projects are available at [anzalabidi.netlify.app](https://anzalabidi.netlify.app)<br><br>
 - 💬 Ask me about anything, I am happy to help<br><br>
