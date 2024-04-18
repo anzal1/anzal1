@@ -8,10 +8,10 @@ I enjoy transforming complex problems into simple and intuitive solutions. Wheth
 
 - 👨🏻‍💻 I’m currently working on Orca, a platform for developing innovative software solutions<br><br>
 - 🚀 I’m currently learning Rust and Java Spring boot<br><br>
-- 👨‍💻 All of my projects are available at [anzalabidi.netlify.app](https://anzalabidi.netlify.app)<br><br>
+- 👨‍💻 All of my projects are available at [https://anzalabidi.netlify.app](https://anzalabidi.netlify.app)<br><br>
 - 💬 Ask me about anything, I am happy to help<br><br>
-- 📝 I regularly write blogs on [Lucifer](https://anzal.hashnode.dev/)<br><br>
-- 📫 How to reach me: cofclan145@gmail.com<br><br>
+- 📝 I regularly write blogs on [https://anzal.hashnode.dev](https://anzal.hashnode.dev/)<br><br>
+- 📫 How to reach me: anzalabidi@gmail.com<br><br>
 - 📝 [Resume](https://drive.google.com/file/d/1ZNwVTRo56HmF_VmlkukYUd4u942CDosL/view?usp=drive_link).
 
 ## 🌐 Socials:
