@@ -59,8 +59,11 @@ const lastPush = await field('lastPush', async () => {
   // perfectly good event. Requiring a message threw those away and reported
   // "no activity" while a push from an hour ago sat right there. Take the
   // event for repo + timestamp; treat the message as a bonus.
-  const push = events.find((e) => e.type === 'PushEvent' && e.repo)
-    ?? events.find((e) => e.repo);
+  // The profile repo pushes to itself every six hours, so without this
+  // filter LAST PUSH would forever read "anzal1" — self-referential noise.
+  const notSelf = (e) => e.repo && e.repo.name.toLowerCase() !== `${P.handle}/${P.handle}`;
+  const push = events.find((e) => e.type === 'PushEvent' && notSelf(e))
+    ?? events.find(notSelf);
   if (!push) throw new Error('no repo-bearing event in the recent window');
   const commit = push.payload?.commits?.at(-1);
   return {
