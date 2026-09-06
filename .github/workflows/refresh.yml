@@ -1,0 +1,64 @@
+name: Refresh plates
+
+# The "live" part. Re-reads the contribution calendar and redraws the plates
+# so the heatmap on the profile is never more than a day stale.
+on:
+  schedule:
+    # Every six hours at :17. Off the hour on purpose: cron at :00 queues
+    # behind everyone else's schedules and lands late.
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    # Narrow on purpose. This job commits assets/ and data/contributions.json,
+    # so watching those paths would make it retrigger itself forever.
+    paths:
+      - 'scripts/plates.mjs'
+      - 'scripts/contributions.mjs'
+      - 'scripts/feed.mjs'
+      - 'data/profile.json'
+      - 'data/portrait.json'
+      - '.github/workflows/refresh.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-plates
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # No Python step: portrait.json is committed and only regenerates when
+      # the avatar changes, so the daily path stays pure Node.
+      # Fetch, then draw. Two steps because plates.mjs must never touch the
+      # network: a redraw from cached data always succeeds.
+      - name: Refresh the feed
+        env:
+          PROFILE_TOKEN: ${{ secrets.PROFILE_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          node scripts/contributions.mjs
+          node scripts/feed.mjs
+
+      - name: Redraw the plates
+        run: node scripts/plates.mjs
+
+      - name: Commit if anything moved
+        run: |
+          git config user.name  'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets data/contributions.json data/feed.json
+          if git diff --cached --quiet; then
+            echo 'nothing moved since the last refresh'
+            exit 0
+          fi
+          git commit -m 'chore: redraw plates from fresh contribution data'
+          git push

@@ -1,0 +1,17 @@
+{
+  "name": "Anzal Husain Abidi",
+  "handle": "anzal1",
+  "host": "gus",
+  "role": "Software Engineer II @ GUS",
+  "site": "https://anzalabidi.dev",
+  "rss": "https://anzal.hashnode.dev/rss.xml",
+  "banner": "ANZAL",
+  "lines": [
+    ["whoami",  "Anzal Husain Abidi — Software Engineer II @ GUS"],
+    ["now",     "multi-tenant agentic voice & chat platform · Go gateway · LLM routing"],
+    ["prev",    "Ken42 — KAI voice AI, 800k+ calls · Zomato — Feeding India infra"],
+    ["oss",     "agentreplay · pact · unclaude · ai-system-design · quicky-wiki"],
+    ["wins",    "Smart India Hackathon 2023 — national winner (Medusa AI)"],
+    ["base",    "New Delhi · remote · anzalabidi.dev"]
+  ]
+}
