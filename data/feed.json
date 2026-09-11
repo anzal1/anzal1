@@ -1,5 +1,5 @@
 {
-  "refreshedAt": "2026-09-11T16:27:05.705Z",
+  "refreshedAt": "2026-09-11T20:56:50.188Z",
   "stale": [],
   "activity": {
     "total": 67,
@@ -14,9 +14,9 @@
     ]
   },
   "github": {
-    "followers": 42,
+    "followers": 43,
     "repos": 80,
-    "stars": 52,
+    "stars": 53,
     "languages": [
       {
         "name": "JavaScript",
@@ -72,7 +72,7 @@
       },
       {
         "name": "voila",
-        "stars": 2,
+        "stars": 3,
         "lang": "JavaScript",
         "desc": "Demos that record themselves — permission-free, on-device, agent-native "
       }
@@ -82,7 +82,7 @@
     "repo": "samesmell",
     "message": null,
     "kind": "push",
-    "at": "2026-09-11T13:54:42Z"
+    "at": "2026-09-11T14:10:10Z"
   },
   "latestPost": {
     "title": "Witness Deep Dive: Building Verifiable Provenance fo",
@@ -90,7 +90,7 @@
   },
   "site": {
     "status": 200,
-    "ms": 584
+    "ms": 729
   },
   "streak": 4,
   "total": 627
