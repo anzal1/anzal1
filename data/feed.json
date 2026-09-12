@@ -1,5 +1,5 @@
 {
-  "refreshedAt": "2026-09-12T15:30:25.181Z",
+  "refreshedAt": "2026-09-12T20:32:00.996Z",
   "stale": [
     "latestPost"
   ],
@@ -17,12 +17,12 @@
   },
   "github": {
     "followers": 43,
-    "repos": 80,
-    "stars": 53,
+    "repos": 79,
+    "stars": 52,
     "languages": [
       {
         "name": "JavaScript",
-        "count": 32
+        "count": 31
       },
       {
         "name": "TypeScript",
@@ -92,7 +92,7 @@
   },
   "site": {
     "status": 200,
-    "ms": 1223
+    "ms": 838
   },
   "streak": 0,
   "total": 627
