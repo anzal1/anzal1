@@ -1,5 +1,5 @@
 {
-  "refreshedAt": "2026-09-12T10:43:40.477Z",
+  "refreshedAt": "2026-09-12T15:30:25.181Z",
   "stale": [
     "latestPost"
   ],
@@ -84,7 +84,7 @@
     "repo": "witness",
     "message": null,
     "kind": "push",
-    "at": "2026-09-11T07:48:38Z"
+    "at": "2026-09-10T14:35:00Z"
   },
   "latestPost": {
     "title": "Witness Deep Dive: Building Verifiable Provenance fo",
@@ -92,7 +92,7 @@
   },
   "site": {
     "status": 200,
-    "ms": 697
+    "ms": 1223
   },
   "streak": 0,
   "total": 627
