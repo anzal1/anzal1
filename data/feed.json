@@ -1,5 +1,5 @@
 {
-  "refreshedAt": "2026-09-15T16:57:26.167Z",
+  "refreshedAt": "2026-09-15T21:19:13.216Z",
   "stale": [],
   "activity": {
     "total": 89,
@@ -16,7 +16,7 @@
   "github": {
     "followers": 43,
     "repos": 80,
-    "stars": 52,
+    "stars": 53,
     "languages": [
       {
         "name": "JavaScript",
@@ -42,7 +42,7 @@
     "topRepos": [
       {
         "name": "quicky-wiki",
-        "stars": 23,
+        "stars": 24,
         "lang": "TypeScript",
         "desc": "⚡ LLM-powered knowledge compiler — turn documents into a confidence-scor"
       },
@@ -90,7 +90,7 @@
   },
   "site": {
     "status": 200,
-    "ms": 1056
+    "ms": 529
   },
   "streak": 3,
   "total": 654
