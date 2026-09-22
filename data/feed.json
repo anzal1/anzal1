@@ -1,6 +1,8 @@
 {
-  "refreshedAt": "2026-09-22T16:55:51.687Z",
-  "stale": [],
+  "refreshedAt": "2026-09-22T21:17:06.224Z",
+  "stale": [
+    "latestPost"
+  ],
   "activity": {
     "total": 53,
     "daily": [
@@ -90,7 +92,7 @@
   },
   "site": {
     "status": 200,
-    "ms": 828
+    "ms": 138
   },
   "streak": 10,
   "total": 696
