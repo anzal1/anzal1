@@ -219,7 +219,7 @@ function card(t) {
     <animate attributeName="opacity" values="1;1;0;0" dur="1.1s" begin="${r2(cursorDelay)}s" repeatCount="indefinite"/>
   </rect>
 `;
-  return doc({ w: W, h: H, title: `${P.name} — terminal summary`,
+  return doc({ w: W, h: H, title: `${P.name}, terminal summary`,
     desc: lines.map(([c, v]) => `${c}: ${v}`).join('. '), body });
 }
 
@@ -603,8 +603,7 @@ function journey(t) {
 
 /* -------------------------------------------------------------- scenery ---- */
 
-/** mulberry32 — deterministic scatter for ridges, trees, and stars, so a
- *  rebuild is byte-identical and the scheduled workflow diffs stay honest. */
+/** mulberry32 — deterministic scatter for ridges, trees, and stars. */
 function rng(seed) {
   let a = seed >>> 0;
   return () => {
@@ -616,270 +615,240 @@ function rng(seed) {
 }
 
 /**
- * The opening plate: the owner's Firewatch wallpaper, repainted as PIXEL ART —
- * and with a cat on the foreground hill where the wallpaper puts a deer.
+ * The opening plate: the owner's Firewatch wallpaper as pixel art, a cat on
+ * the near hill watching the sky. The scene follows the clock in Delhi: the
+ * refresh workflow redraws every six hours (05:47, 11:47, 17:47 and 23:47
+ * IST), so the profile shows dawn in the morning, dusk through the day and
+ * night after dark. SCENE=dawn|dusk|night overrides it for local previews.
  *
- * This is a real framebuffer, not chunky vectors: the scene is painted into a
- * cell grid in code (sky bands with checkerboard dithers, ridge fills, a
- * dithered sun halo, a shimmering reflection column), then each row is
- * run-length encoded into rects, which is what keeps 172x72 cells inside a
- * sane file size. Sprites that move — the cat's tail, the birds, twinkles —
- * are stamped on top as overlays with discrete-step animation, because pixel
- * art slides in steps, not glides.
+ * A real framebuffer, not chunky vectors: the scene is painted into a cell
+ * grid, each row run-length encoded into rects, and the moving sprites
+ * (tail, twinkles, glitter, birds, fireflies, the cabin window) are stamped
+ * on top with discrete-step animation, because pixel art moves in steps.
  */
-function scenery(t) {
-  const CW = 5;                       // cell size in svg units
-  const GW = 172, GH = 72;            // grid → 860 x 360
-  const W = GW * CW, H = GH * CW;
-  const dark = t.name === 'dark';
-  const rand = rng(20211901);
+const CW = 5, GW = 172, GH = 72, W = GW * CW, H = GH * CW;
 
-  /* Palette, dusk and dawn. Indexed — the buffer stores indices. */
-  const P0 = dark ? {
+function sceneNow() {
+  if (process.env.SCENE) return process.env.SCENE;
+  const h = (new Date().getUTCHours() + 5.5 + new Date().getUTCMinutes() / 60) % 24;
+  if (h >= 4 && h < 10) return 'dawn';
+  if (h >= 10 && h < 19) return 'dusk';
+  return 'night';
+}
+const SCENE = sceneNow();
+
+const PAL = {
+  dusk: {
     sky: ['#161c36', '#232a4c', '#3a3560', '#5c3f62', '#8f4a58', '#cf6c44', '#f0a05a'],
-    sun: '#fff0d0', halo: '#ffd9a0',
-    ridge: ['#7c5570', '#644660', '#4d3450', '#3a2740'],
-    water: ['#e8894e', '#c06552', '#8a4c5e', '#5c3a54'],
-    fg: '#201527', pine: '#150d1b', star: '#e8e4f2',
-    caption: '#c9b8c4',
-  } : {
-    sky: ['#9db8d4', '#b4c4dc', '#ccc9de', '#e4c4ae', '#f2bc86', '#f7c088', '#fbd9a0'],
-    sun: '#fffdf5', halo: '#fff0c8',
-    ridge: ['#b99bae', '#a3849c', '#8a6b86', '#70536e'],
-    water: ['#f7c58a', '#e0a67e', '#b58490', '#8a6688'],
-    fg: '#42304a', pine: '#332240', star: '#ffffff',
-    caption: '#f6e8d8',
-  };
+    sun: '#fff0d0', halo: '#ffd9a0', halo2: '#f7b877', streak: '#e2875a',
+    ridge: ['#86607a', '#6a4a66', '#513854', '#3b2842'], rim: '#b8757a',
+    water: ['#e8894e', '#c06552', '#8a4c5e', '#5c3a54', '#3f2a44'], ripple: '#f6b27a',
+    fg: '#201527', pine: '#150d1b', star: '#e8e4f2', caption: '#c9b8c4', firefly: '#ffe28a',
+  },
+  night: {
+    sky: ['#070a18', '#0b1026', '#101834', '#152142', '#1a2a50', '#20335c', '#273d66'],
+    sun: '#f4efdc', halo: '#c9cfe0', halo2: '#8f9bc0', streak: '#2c3b66', crater: '#cfc9b6',
+    ridge: ['#3a4670', '#2c375c', '#212a48', '#171e36'], rim: '#56639a',
+    water: ['#2a3a66', '#1f2c52', '#172241', '#111a33', '#0c1328'], ripple: '#c9cfe0',
+    fg: '#0a0e1c', pine: '#05070f', star: '#eef0ff', caption: '#9aa3c4', firefly: '#ffd76a', window: '#ffc861',
+  },
+  dawn: {
+    sky: ['#34406e', '#566394', '#8d8fb6', '#c7a2b3', '#eab29d', '#f5c99b', '#fbe0b2'],
+    sun: '#fffaf0', halo: '#ffe9c2', halo2: '#fbd09a', streak: '#f3b99a',
+    ridge: ['#a98aa6', '#8e7293', '#735a7e', '#5a4568'], rim: '#e8b7a8',
+    water: ['#f5d0a4', '#e3aa9a', '#b9889e', '#8d6c90', '#6a5378'], ripple: '#fff1d6',
+    fg: '#3a2b48', pine: '#2a1f38', star: '#ffffff', caption: '#f3e2d6', mist: '#f1d9d2',
+  },
+};
 
-  const SUNX = Math.round(GW * 0.56), SUNY = 25;
-  const LAKE_TOP = 42, LAKE_BOT = 54;
-
-  /* ---- paint the framebuffer ---- */
+function paint(mode) {
+  const P = PAL[mode];
   const buf = Array.from({ length: GH }, () => new Array(GW).fill(null));
   const put = (x, y, c) => { if (x >= 0 && x < GW && y >= 0 && y < GH) buf[y][x] = c; };
+  const get = (x, y) => (x >= 0 && x < GW && y >= 0 && y < GH ? buf[y][x] : null);
+  const rand = rng(20211901);
+  const LAKE_TOP = 42;
+  const SUNX = mode === 'dawn' ? Math.round(GW * 0.5) : Math.round(GW * 0.6);
+  const SUNY = mode === 'dawn' ? 35 : mode === 'night' ? 14 : 24;
 
-  // Sky bands with a two-row checkerboard dither at each boundary.
-  const bands = P0.sky.length;
-  const skyH = LAKE_TOP;
-  for (let y = 0; y < skyH; y++) {
-    const f = y / skyH * (bands - 1);
-    const i = Math.floor(f);
-    const frac = f - i;
+  // Sky: bands with a checker dither where one band hands to the next.
+  const bands = P.sky.length;
+  for (let y = 0; y < LAKE_TOP; y++) {
+    const f = y / LAKE_TOP * (bands - 1), i = Math.floor(f), fr = f - i;
     for (let x = 0; x < GW; x++) {
-      let c = P0.sky[i];
-      if (frac > 0.55 && i + 1 < bands && (x + y) % 2 === 0) c = P0.sky[i + 1];
+      let c = P.sky[i];
+      if (i + 1 < bands && ((fr > 0.5 && (x + y) % 2 === 0) || (fr > 0.8 && (x + y) % 2 === 1 && (x * 3 + y) % 4 === 0))) c = P.sky[i + 1];
       put(x, y, c);
     }
   }
-  // Stars.
-  if (dark) for (let i = 0; i < 46; i++) {
-    put(Math.floor(rand() * GW), Math.floor(rand() * 16), P0.star);
+  // Stars: dense and uneven at night, a few at dusk, none at dawn.
+  if (mode !== 'dawn') {
+    const n = mode === 'night' ? 90 : 34, maxY = mode === 'night' ? 30 : 13;
+    for (let i = 0; i < n; i++) {
+      const y = Math.floor(Math.pow(rand(), 1.6) * maxY);
+      put(Math.floor(rand() * GW), y, P.star);
+    }
   }
-  // Sun: filled pixel disc with a dithered halo ring.
-  const sunR = 4;
-  for (let y = -sunR - 3; y <= sunR + 3; y++) for (let x = -sunR - 3; x <= sunR + 3; x++) {
-    const d = Math.sqrt(x * x + y * y);
-    if (d <= sunR + 0.4) put(SUNX + x, SUNY + y, P0.sun);
-    else if (d <= sunR + 2.6 && (x + y + 100) % 2 === 0) put(SUNX + x, SUNY + y, P0.halo);
+  // Milky way: a faint dithered diagonal band (night only).
+  if (mode === 'night') {
+    const rr = rng(4242);
+    for (let x = 0; x < GW; x++) for (let y = 0; y < 30; y++) {
+      const d = Math.abs(y - (26 - x * 0.16));
+      if (d < 4 && rr() < 0.22 * (1 - d / 4)) put(x, y, rr() < 0.25 ? P.star : P.sky[3]);
+    }
   }
-  // Ridges: peaks swell at the edges and part around the sun (the wallpaper's
-  // composition), then fill down to the lake.
+  // Sun (or moon): solid core, a solid inner ring, a dithered outer ring.
+  const R = mode === 'night' ? 4 : 5;
+  for (let y = -R - 5; y <= R + 5; y++) for (let x = -R - 5; x <= R + 5; x++) {
+    const d = Math.hypot(x, y);
+    if (d <= R + 0.3) put(SUNX + x, SUNY + y, P.sun);
+    else if (d <= R + 1.4) put(SUNX + x, SUNY + y, P.halo);
+    else if (d <= R + (mode === 'night' ? 2.4 : 3.2) && (x + y + 100) % 2 === 0) put(SUNX + x, SUNY + y, P.halo2);
+    else if (mode !== 'night' && d <= R + 4.6 && (x + y + 100) % 4 === 0) put(SUNX + x, SUNY + y, P.halo2);
+  }
+  if (mode === 'night') { put(SUNX - 1, SUNY - 1, P.crater); put(SUNX + 2, SUNY + 1, P.crater); put(SUNX, SUNY + 2, P.crater); put(SUNX + 1, SUNY - 2, P.crater); }
+  // Thin cloud streaks crossing the lower sun, the classic pixel sunset.
+  if (mode !== 'night') for (const [dy, len, off] of [[2, 24, -6], [4, 16, 5]]) {
+    for (let x = SUNX + off - len / 2; x < SUNX + off + len / 2; x++) put(Math.round(x), SUNY + dy, P.streak);
+  }
+
+  // Ridges: four layers, farthest palest, with a warm rim light on the side
+  // facing the sun.
   const notch = (x) => 0.35 + Math.min(1, Math.abs(x - SUNX) / (GW * 0.5) * 1.6) * 0.85;
-  const ridgeTops = P0.ridge.map((_, li) => {
+  P.ridge.forEach((col, li) => {
     const rr = rng(7001 + li);
-    const base = 33 + li * 3.2;
-    const amp = 12 - li * 2.2;
+    const base = (mode === 'dawn' ? 36 : 33) + li * 2.6, amp = 12 - li * 2.2;
+    let x0 = 0, y0 = base - rr() * amp * notch(0), x1 = 0, y1 = y0;
     const tops = [];
-    let x0 = 0, y0 = base - rr() * amp * notch(0);
-    let x1 = 0, y1 = y0;
     for (let x = 0; x < GW; x++) {
-      if (x >= x1) {
-        x0 = x1; y0 = y1;
-        x1 = x0 + 9 + Math.floor(rr() * 14);
-        y1 = base - rr() * amp * notch(x1);
-      }
-      // Linear between peaks, rounded to the grid: stair-stepped diagonals,
-      // which is what makes pixel mountains read as mountains. (The first
-      // pass held each segment at its start height and produced flat mesas.)
+      if (x >= x1) { x0 = x1; y0 = y1; x1 = x0 + 9 + Math.floor(rr() * 14); y1 = base - rr() * amp * notch(x1); }
       tops.push(Math.round(y0 + (y1 - y0) * ((x - x0) / Math.max(1, x1 - x0))));
     }
-    return tops;
-  });
-  ridgeTops.forEach((tops, li) => {
     for (let x = 0; x < GW; x++) {
-      for (let y = Math.max(0, tops[x]); y < LAKE_TOP; y++) put(x, y, P0.ridge[li]);
+      for (let y = Math.max(0, tops[x]); y < LAKE_TOP; y++) put(x, y, col);
+      const facing = tops[x] > (tops[x - 1] ?? tops[x]) ? false : Math.abs(x - SUNX) < 55;
+      if (li < 2 && facing && (x + li) % 2 === 0) put(x, tops[x], P.rim);
     }
   });
-  // Far pine strip on the far shore.
+  // Far treeline: small triangular pines, dense, on the far shore.
   {
     const rr = rng(5150);
-    let x = 1;
-    while (x < GW - 1) {
-      if (rr() < 0.7) {
-        const h = 1 + Math.floor(rr() * 3);
-        for (let k = 0; k < h; k++) put(x, LAKE_TOP - 1 - k, P0.pine);
-        if (h > 1 && rr() < 0.5) put(x + 1, LAKE_TOP - 1, P0.pine);
-      }
+    let x = 0;
+    while (x < GW) {
+      const h = 2 + Math.floor(rr() * 4);
+      for (let k = 0; k < h; k++) { const w = k < h - 2 ? 1 : 0; for (let dx = -w; dx <= w; dx++) put(x + dx, LAKE_TOP - 1 - k, P.pine); }
+      put(x, LAKE_TOP - 1 - h, P.pine);
       x += 2 + Math.floor(rr() * 3);
     }
+    for (let x = 0; x < GW; x++) put(x, LAKE_TOP - 1, P.pine);
   }
-  // Lake bands + dithered boundaries + reflection column under the sun.
-  for (let y = LAKE_TOP; y < LAKE_BOT; y++) {
-    const f = (y - LAKE_TOP) / (LAKE_BOT - LAKE_TOP) * (P0.water.length - 1);
-    const i = Math.floor(f);
+
+  // Lake: bands down past the hill line (no gap), ripples, a broken glitter
+  // path under the sun.
+  for (let y = LAKE_TOP; y < GH; y++) {
+    const f = Math.min(1, (y - LAKE_TOP) / 16) * (P.water.length - 1), i = Math.floor(f);
     for (let x = 0; x < GW; x++) {
-      let c = P0.water[i];
-      if (f - i > 0.5 && i + 1 < P0.water.length && (x + y) % 2 === 0) c = P0.water[i + 1];
+      let c = P.water[Math.min(i, P.water.length - 1)];
+      if (f - i > 0.5 && i + 1 < P.water.length && (x + y) % 2 === 0) c = P.water[i + 1];
       put(x, y, c);
     }
   }
   {
     const rr = rng(9110);
-    for (let y = LAKE_TOP; y < LAKE_BOT; y++) {
-      const halfW = Math.max(1, 4 - Math.floor((y - LAKE_TOP) / 3));
-      for (let x = SUNX - halfW; x <= SUNX + halfW; x++) {
-        if ((x + y) % 2 === 0 && rr() < 0.8) put(x, y, P0.halo);
-      }
+    for (let y = LAKE_TOP + 1; y < 58; y++) {
+      if (rr() < 0.55) { const len = 3 + Math.floor(rr() * 7); const x = Math.floor(rr() * GW); for (let k = 0; k < len; k++) put(x + k, y, P.water[Math.max(0, Math.floor((y - LAKE_TOP) / 4) - 1)] ); }
+      const k = y - LAKE_TOP;
+      const half = Math.max(1, 8 - Math.floor(k / 1.8));
+      if (k > 1 && k % 2 === 1) continue;
+      let x = SUNX - half + Math.floor(rr() * 2);
+      while (x <= SUNX + half) { const run = 2 + Math.floor(rr() * 3); for (let q = 0; q < run && x + q <= SUNX + half; q++) put(x + q, y, k < 2 ? P.halo : P.ripple); x += run + 1 + Math.floor(rr() * 2); }
     }
   }
-  // Foreground hill: a low curve sweeping up at the edges.
+  // Mist over the water at dawn.
+  if (mode === 'dawn') for (const [my, ph] of [[45, 0], [49, 3]]) for (let x = 0; x < GW; x++) if (((x + ph) % 11) < 6 && (x + my) % 2 === 0) put(x, my, P.mist);
+
+  // Foreground hill, with grass tufts on its crest.
+  const hillTop = [];
   {
-    const rr = rng(6161);
-    let bump = 0;
+    const rr = rng(6161); let bump = 0;
     for (let x = 0; x < GW; x++) {
       if (x % 7 === 0) bump = Math.floor(rr() * 3) - 1;
       const u = x / GW;
-      const yTop = Math.round(60 - Math.sin(u * Math.PI) * 4 - Math.cos(u * Math.PI * 2) * 1.6) + bump;
-      for (let y = yTop; y < GH; y++) put(x, y, P0.fg);
+      const yTop = Math.round(59 - Math.sin(u * Math.PI) * 3 - Math.cos(u * Math.PI * 2) * 1.6) + bump;
+      hillTop.push(yTop);
+      for (let y = yTop; y < GH; y++) put(x, y, P.fg);
     }
+    const rg = rng(1212);
+    for (let x = 0; x < GW; x++) if (rg() < 0.28) { put(x, hillTop[x] - 1, P.fg); if (rg() < 0.35) put(x, hillTop[x] - 2, P.fg); }
   }
-  // Framing pixel pines, both edges.
-  const stampPine = (cx, baseY, h) => {
-    for (let k = 0; k < h; k++) {
-      const w = Math.max(0, Math.round((h - k) * 0.34) - (k % 2 === 0 ? 0 : 1));
-      for (let x = cx - w; x <= cx + w; x++) put(x, baseY - k, P0.pine);
-    }
-    put(cx, baseY + 1, P0.pine);
-  };
+  // Framing pines, both edges.
+  const stampPine = (cx, by, h) => { for (let k = 0; k < h; k++) { const w = Math.max(0, Math.round((h - k) * 0.36) - (k % 3 === 1 ? 1 : 0)); for (let x = cx - w; x <= cx + w; x++) put(x, by - k, P.pine); } put(cx, by + 1, P.pine); };
   {
     const rr = rng(3313);
-    for (const [cx, n] of [[7, 2], [20, 2], [GW - 21, 2], [GW - 8, 2]]) {
-      for (let i = 0; i < n; i++) {
-        stampPine(cx + Math.floor((rr() - 0.5) * 9), 60 + Math.floor(rr() * 4), 13 + Math.floor(rr() * 12));
-      }
+    for (const [cx, n] of [[7, 2], [21, 2], [GW - 22, 2], [GW - 8, 2]]) for (let i = 0; i < n; i++) {
+      const x = cx + Math.floor((rr() - 0.5) * 9), by = 61 + Math.floor(rr() * 4), h = 14 + Math.floor(rr() * 12);
+      stampPine(x, by, h);
     }
   }
+  // Night: a small cabin on the left rise, one window lit.
+  const cabin = { x: 34, y: 0 };
+  if (mode === 'night') {
+    const bx = 34, by = hillTop[38];
+    for (let y = by - 7; y < by; y++) for (let x = bx; x < bx + 11; x++) put(x, y, P.pine);
+    for (let k = 0; k < 4; k++) for (let x = bx - 1 + k; x < bx + 12 - k; x++) put(x, by - 8 - k, P.pine);
+    for (let y = by - 13; y < by - 9; y++) put(bx + 8, y, P.pine);
+    cabin.y = by;
+  }
+  // The cat, from behind, sitting on the crest and watching the sun.
+  const CAT = ['..X....X..', '..XX..XX..', '..XXXXXX..', '..XXXXXX..', '..XXXXXX..', '...XXXX...', '..XXXXXX..', '.XXXXXXXX.', '.XXXXXXXX.', 'XXXXXXXXXX', 'XXXXXXXXXX', 'XXXXXXXXXX'];
+  const CATX = 70, CATY = hillTop[75] - CAT.length + 1;
+  CAT.forEach((row, ry) => [...row].forEach((ch, rx) => { if (ch === 'X') put(CATX + rx, CATY + ry, P.pine); }));
 
-  /* The cat: a hand-drawn sprite on the hill, facing the sun. The tail is a
-     separate two-frame overlay so it can flick. */
-  const CATX = 64, CATY = 49;   // top-left of sprite in grid coords
-  const CAT_BODY = [
-    '.X....X.',
-    '.XX..XX.',
-    '.XXXXXX.',
-    '.XXXXXX.',
-    '..XXXX..',
-    '..XXXX..',
-    '.XXXXXX.',
-    '.XXXXXX.',
-    'XXXXXXXX',
-    'XXXXXXXX',
-  ];
-  CAT_BODY.forEach((row, ry) => [...row].forEach((ch, rx) => {
-    if (ch === 'X') put(CATX + rx, CATY + ry, P0.fg === buf[CATY + ry]?.[CATX + rx] ? P0.pine : P0.pine);
-  }));
+  return { buf, P, CATX, CATY, SUNX, SUNY, LAKE_TOP, cabin, hillTop };
+}
 
-  /* ---- RLE the buffer into rects ---- */
+
+function scenery(t) {
+  const mode = SCENE;
+  const { buf, P, CATX, CATY, SUNX, LAKE_TOP, cabin } = paint(mode);
   const rows = [];
-  for (let y = 0; y < GH; y++) {
-    let x = 0;
-    while (x < GW) {
-      const c = buf[y][x];
-      let x2 = x;
-      while (x2 < GW && buf[y][x2] === c) x2++;
-      if (c) rows.push(`<rect x="${x * CW}" y="${y * CW}" width="${(x2 - x) * CW}" height="${CW}" fill="${c}"/>`);
-      x = x2;
-    }
+  for (let y = 0; y < GH; y++) { let x = 0; while (x < GW) { const c = buf[y][x]; let x2 = x; while (x2 < GW && buf[y][x2] === c) x2++; if (c) rows.push(`<rect x="${x * CW}" y="${y * CW}" width="${(x2 - x) * CW}" height="${CW}" fill="${c}"/>`); x = x2; } }
+  const cell = (x, y, c, extra = '') => `<rect x="${x * CW}" y="${y * CW}" width="${CW}" height="${CW}" fill="${c}"${extra}/>`;
+  const blink = (vals, kt, dur, begin = 0) => `<animate attributeName="opacity" calcMode="discrete" values="${vals}" keyTimes="${kt}" dur="${dur}s" begin="${begin}s" repeatCount="indefinite"/>`;
+  let over = '';
+  // tail flick, curling out to the right on the ground
+  const tA = [[10, 11], [11, 11], [12, 11], [13, 10]], tB = [[10, 11], [11, 11], [12, 10], [12, 9]];
+  const tail = (cells, v) => `<g opacity="${v[0]}">${cells.map(([x, y]) => cell(CATX + x, CATY + y, P.pine)).join('')}${blink(v.join(';'), '0;0.08;0.16;1', 6)}</g>`;
+  over += tail(tA, [1, 0, 1, 1]) + tail(tB, [0, 1, 0, 0]);
+  // ear twitch
+  // twinkles
+  if (mode !== 'dawn') { const rr = rng(777); for (let i = 0; i < 10; i++) over += `<g opacity="0">${cell(Math.floor(rr() * GW), Math.floor(rr() * (mode === 'night' ? 26 : 12)), P.star)}${blink('0;1;0', '0;0.5;1', r2(1.6 + rr() * 2.8), r2(rr() * 3))}</g>`; }
+  // glitter on the sun path
+  { const rr = rng(888); for (let i = 0; i < 7; i++) { const x = SUNX - 4 + Math.floor(rr() * 9), y = LAKE_TOP + 2 + Math.floor(rr() * 12); over += `<g>${cell(x, y, P.halo)}${blink('1;0;1', '0;0.5;1', r2(1.2 + rr() * 2), r2(rr() * 2))}</g>`; } }
+  // fireflies over the foreground at dusk and night
+  if (mode !== 'dawn') { const rr = rng(4040); for (let i = 0; i < 7; i++) { const x = 30 + Math.floor(rr() * 110), y = 62 + Math.floor(rr() * 7); over += `<g opacity="0">${cell(x, y, P.firefly)}${blink('0;1;1;0', '0;0.3;0.6;1', r2(2.5 + rr() * 3), r2(rr() * 4))}</g>`; } }
+  // cabin window flicker (someone still at the keyboard)
+  if (mode === 'night') over += `<g>${cell(cabin.x + 3, cabin.y - 5, P.window)}${cell(cabin.x + 4, cabin.y - 5, P.window)}${cell(cabin.x + 3, cabin.y - 4, P.window)}${cell(cabin.x + 4, cabin.y - 4, P.window)}${blink('1;0.55;1;1', '0;0.04;0.08;1', 11)}</g>`;
+  // shooting star at night
+  if (mode === 'night') { const pts = [[40, 4], [44, 6], [48, 8], [52, 10], [56, 12]]; over += pts.map(([x, y], i) => `<g opacity="0">${cell(x, y, P.star)}${cell(x - 1, y - 1, P.star, ' opacity=".5"')}<animate attributeName="opacity" calcMode="discrete" values="0;1;0;0" keyTimes="0;${r2(0.02 + i * 0.008)};${r2(0.03 + i * 0.008)};1" dur="12s" begin="2s" repeatCount="indefinite"/></g>`).join(''); }
+  // birds at dusk and dawn
+  if (mode !== 'night') {
+    const bird = (y0, dur, begin) => { const steps = 26; const xs = Array.from({ length: steps }, (_, i) => `${Math.round(-8 + i * (GW + 16) / steps) * CW} ${(y0 + (i % 3 === 0 ? 1 : 0)) * CW}`); const wing = (up) => `<g opacity="${up ? 1 : 0}">${cell(0, up ? 0 : 1, P.fg)}${cell(2, up ? 0 : 1, P.fg)}${cell(1, 1, P.fg)}<animate attributeName="opacity" calcMode="discrete" values="${up ? '1;0' : '0;1'}" dur="0.6s" repeatCount="indefinite"/></g>`; return `<g transform="translate(-60 0)">${wing(true)}${wing(false)}<animateTransform attributeName="transform" type="translate" calcMode="discrete" values="${xs.join(';')}" dur="${dur}s" begin="${begin}s" repeatCount="indefinite"/></g>`; };
+    over += bird(12, 28, 0) + bird(15, 28, 0.9) + bird(10, 28, 1.6);
   }
 
-  /* ---- animated overlays (discrete steps — pixel art doesn't glide) ---- */
-  // Tail: two frames swapping.
-  const tailA = [[8, 5], [9, 4], [9, 3], [9, 2]];
-  const tailB = [[8, 5], [9, 5], [10, 4], [10, 3]];
-  const tail = (cells, vals) =>
-    `<g opacity="${vals[0]}">${cells.map(([tx, ty]) =>
-      `<rect x="${(CATX + tx) * CW}" y="${(CATY + ty) * CW}" width="${CW}" height="${CW}" fill="${P0.pine}"/>`).join('')}
-    <animate attributeName="opacity" calcMode="discrete" values="${vals.join(';')}" keyTimes="0;0.08;0.16;1" dur="6s" repeatCount="indefinite"/></g>`;
-  const catTail = tail(tailA, [1, 0, 1, 1]) + tail(tailB, [0, 1, 0, 0]);
-
-  // Twinkling star overlay (a few cells blinking).
-  let twinkle = '';
-  if (dark) {
-    const rr = rng(777);
-    for (let i = 0; i < 8; i++) {
-      const x = Math.floor(rr() * GW), y = Math.floor(rr() * 14);
-      twinkle += `<rect x="${x * CW}" y="${y * CW}" width="${CW}" height="${CW}" fill="${P0.star}" opacity="0">
-      <animate attributeName="opacity" calcMode="discrete" values="0;1;0" keyTimes="0;0.5;1" dur="${r2(1.6 + rr() * 2.8)}s" begin="${r2(rr() * 3)}s" repeatCount="indefinite"/>
-    </rect>`;
-    }
-  }
-  // Reflection shimmer: three column cells toggling.
-  let shimmer = '';
-  {
-    const rr = rng(888);
-    for (let i = 0; i < 5; i++) {
-      const x = SUNX - 3 + Math.floor(rr() * 7), y = LAKE_TOP + 1 + Math.floor(rr() * 9);
-      shimmer += `<rect x="${x * CW}" y="${y * CW}" width="${CW}" height="${CW}" fill="${P0.halo}" opacity="1">
-      <animate attributeName="opacity" calcMode="discrete" values="1;0;1" keyTimes="0;0.5;1" dur="${r2(1.2 + rr() * 2)}s" begin="${r2(rr() * 2)}s" repeatCount="indefinite"/>
-    </rect>`;
-    }
-  }
-  // A bird: two-pixel wings flapping, stepping across the sky in 24 jumps.
-  const birdY = 14;
-  const birdSteps = 24;
-  const xs = Array.from({ length: birdSteps }, (_, i) => `${Math.round(-8 + i * (GW + 16) / birdSteps) * CW} ${(birdY + (i % 3 === 0 ? 1 : 0)) * CW}`);
-  const birdG = (dy, frames) => `<g opacity="${frames[0]}">
-    <rect x="0" y="${dy * CW}" width="${CW}" height="${CW}" fill="${P0.fg}"/>
-    <rect x="${2 * CW}" y="${dy * CW}" width="${CW}" height="${CW}" fill="${P0.fg}"/>
-    <rect x="${CW}" y="${(dy + (frames[0] ? 1 : -0)) * CW}" width="${CW}" height="${CW}" fill="${P0.fg}"/>
-    <animate attributeName="opacity" calcMode="discrete" values="${frames.join(';')}" dur="0.6s" repeatCount="indefinite"/>
-  </g>`;
-  const bird = `<g>
-    ${birdG(0, [1, 0])}${birdG(0, [0, 1])}
-    <animateTransform attributeName="transform" type="translate" calcMode="discrete" values="${xs.join(';')}" dur="26s" repeatCount="indefinite"/>
-  </g>`;
-
-  /* Signature: Sacramento, the portfolio's left-to-right wipe. */
-  const SIG = { x: 28, y: H - 22, size: 25 };
-  const sigW = 205;
-  const signature = `<clipPath id="sigWipe"><rect x="${SIG.x - 4}" y="${SIG.y - 30}" width="${sigW + 44}" height="42">
-      <animate attributeName="width" values="0;${sigW + 44};${sigW + 44}" keyTimes="0;0.32;1" dur="7s" repeatCount="indefinite"/>
-    </rect></clipPath>
-  <g clip-path="url(#sigWipe)">
-    <text x="${SIG.x}" y="${SIG.y}" font-family="${MONO}" font-size="15" fill="${P0.caption}" opacity="0.7">&lt;</text>
-    <text x="${SIG.x + 12}" y="${SIG.y}" font-family="${SCRIPT}" font-size="${SIG.size}" fill="${P0.caption}">AnzalHusainAbidi</text>
-    <text x="${SIG.x + sigW - 12}" y="${SIG.y}" font-family="${MONO}" font-size="15" fill="${P0.caption}" opacity="0.7">/&gt;</text>
-  </g>`;
-
+  const cap = P.caption;
+  const sig = `<clipPath id="sigWipe"><rect x="24" y="${H - 52}" width="250" height="42"><animate attributeName="width" values="0;250;250" keyTimes="0;0.32;1" dur="7s" repeatCount="indefinite"/></rect></clipPath>
+  <g clip-path="url(#sigWipe)"><text x="28" y="${H - 22}" font-family="${MONO}" font-size="15" fill="${cap}" opacity="0.7">&lt;</text><text x="40" y="${H - 22}" font-family="${SCRIPT}" font-size="25" fill="${cap}">AnzalHusainAbidi</text><text x="221" y="${H - 22}" font-family="${MONO}" font-size="15" fill="${cap}" opacity="0.7">/&gt;</text></g>`;
   const body = `<defs><clipPath id="pxPlate"><rect width="${W}" height="${H}" rx="6"/></clipPath></defs>
-  <g clip-path="url(#pxPlate)" shape-rendering="crispEdges">
-  ${rows.join('')}
-  ${catTail}
-  ${twinkle}
-  ${shimmer}
-  ${bird}
-  </g>
-  ${signature}
-  <text x="${W - 18}" y="${H - 16}" text-anchor="end" font-family="${MONO}" font-size="9.5"
-    letter-spacing="2.4" fill="${P0.caption}" opacity="0.9">28.6\u00b0N 77.2\u00b0E \u00b7 NEW DELHI</text>
+  <g clip-path="url(#pxPlate)" shape-rendering="crispEdges">${rows.join('')}${over}</g>
+  ${sig}
+  <text x="${W - 18}" y="${H - 16}" text-anchor="end" font-family="${MONO}" font-size="9.5" letter-spacing="2.4" fill="${cap}" opacity="0.85">28.6\u00b0N 77.2\u00b0E \u00b7 NEW DELHI</text>
   <rect width="${W}" height="${H}" rx="6" fill="none" stroke="${t.line}"/>
 `;
-  return doc({
-    w: W, h: H,
-    title: 'Dusk over the lake, in pixels',
-    desc: 'A pixel-art scene after the Firewatch wallpaper: a dithered sun over stepped ridges and a lake, pixel pines framing the edges, and a pixel cat on the hill, tail flicking. Signed AnzalHusainAbidi. New Delhi.',
-    body,
-  });
+  const words = { dawn: 'Dawn over the lake, mist on the water', dusk: 'Dusk over the lake', night: 'Night over the lake, one window lit' }[mode];
+  return doc({ w: W, h: H, title: `${words}, in pixels`,
+    desc: `A pixel-art scene after the Firewatch wallpaper that follows the time in Delhi, currently ${mode}: stepped ridges, a lake, pixel pines, and a cat on the hill watching the sky. Signed AnzalHusainAbidi. New Delhi.`, body });
 }
 
 /* ------------------------------------------------------------------ run ---- */
