@@ -1,10 +1,8 @@
 {
-  "refreshedAt": "2026-09-28T05:20:51.563Z",
-  "stale": [
-    "latestPost"
-  ],
+  "refreshedAt": "2026-09-28T13:50:49.061Z",
+  "stale": [],
   "activity": {
-    "total": 132,
+    "total": 133,
     "daily": [
       3,
       25,
@@ -12,13 +10,13 @@
       30,
       39,
       32,
-      0
+      1
     ]
   },
   "github": {
     "followers": 42,
     "repos": 85,
-    "stars": 65,
+    "stars": 66,
     "languages": [
       {
         "name": "JavaScript",
@@ -56,7 +54,7 @@
       },
       {
         "name": "faultline",
-        "stars": 4,
+        "stars": 5,
         "lang": "HTML",
         "desc": "A living architecture map for any codebase, any language, any coding age"
       },
@@ -92,8 +90,8 @@
   },
   "site": {
     "status": 200,
-    "ms": 194
+    "ms": 227
   },
-  "streak": 0,
-  "total": 811
+  "streak": 16,
+  "total": 812
 }
