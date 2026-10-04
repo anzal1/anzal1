@@ -1,24 +1,24 @@
 {
-  "refreshedAt": "2026-10-03T21:12:31.777Z",
+  "refreshedAt": "2026-10-04T05:49:43.355Z",
   "stale": [
     "latestPost"
   ],
   "activity": {
-    "total": 125,
+    "total": 123,
     "daily": [
-      32,
       3,
       0,
       0,
       1,
       53,
-      36
+      36,
+      30
     ]
   },
   "github": {
     "followers": 42,
     "repos": 87,
-    "stars": 70,
+    "stars": 72,
     "languages": [
       {
         "name": "JavaScript",
@@ -56,7 +56,7 @@
       },
       {
         "name": "faultline",
-        "stars": 9,
+        "stars": 11,
         "lang": "HTML",
         "desc": "A living architecture map for any codebase, any language, any coding age"
       },
@@ -84,7 +84,7 @@
     "repo": "media-monkey",
     "message": null,
     "kind": "push",
-    "at": "2026-10-03T20:10:18Z"
+    "at": "2026-10-03T19:21:17Z"
   },
   "latestPost": {
     "title": "Witness Deep Dive: Building Verifiable Provenance fo",
@@ -92,8 +92,8 @@
   },
   "site": {
     "status": 200,
-    "ms": 220
+    "ms": 76
   },
-  "streak": 3,
-  "total": 904
+  "streak": 4,
+  "total": 934
 }
