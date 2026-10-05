@@ -1,24 +1,24 @@
 {
-  "refreshedAt": "2026-10-04T21:22:20.996Z",
+  "refreshedAt": "2026-10-05T05:36:06.060Z",
   "stale": [
     "latestPost"
   ],
   "activity": {
-    "total": 130,
+    "total": 127,
     "daily": [
-      3,
       0,
       0,
       1,
       53,
       36,
-      37
+      37,
+      0
     ]
   },
   "github": {
     "followers": 42,
     "repos": 88,
-    "stars": 72,
+    "stars": 73,
     "languages": [
       {
         "name": "JavaScript",
@@ -49,16 +49,16 @@
         "desc": "⚡ LLM-powered knowledge compiler — turn documents into a confidence-scor"
       },
       {
+        "name": "faultline",
+        "stars": 12,
+        "lang": "HTML",
+        "desc": "A living architecture map for any codebase, any language, any coding age"
+      },
+      {
         "name": "ai-system-design",
         "stars": 11,
         "lang": "Python",
         "desc": "A practical open-source guide to designing production AI systems: RAG, a"
-      },
-      {
-        "name": "faultline",
-        "stars": 11,
-        "lang": "HTML",
-        "desc": "A living architecture map for any codebase, any language, any coding age"
       },
       {
         "name": "voila",
@@ -81,10 +81,10 @@
     ]
   },
   "lastPush": {
-    "repo": "postgres-from-scratch",
+    "repo": "media-monkey",
     "message": null,
     "kind": "push",
-    "at": "2026-10-04T16:34:20Z"
+    "at": "2026-10-03T20:10:56Z"
   },
   "latestPost": {
     "title": "Witness Deep Dive: Building Verifiable Provenance fo",
@@ -92,8 +92,8 @@
   },
   "site": {
     "status": 200,
-    "ms": 148
+    "ms": 136
   },
-  "streak": 4,
-  "total": 941
+  "streak": 0,
+  "total": 926
 }
