@@ -1,6 +1,8 @@
 {
-  "refreshedAt": "2026-10-07T13:19:46.906Z",
-  "stale": [],
+  "refreshedAt": "2026-10-07T23:03:53.646Z",
+  "stale": [
+    "latestPost"
+  ],
   "activity": {
     "total": 202,
     "daily": [
@@ -15,27 +17,27 @@
   },
   "github": {
     "followers": 42,
-    "repos": 90,
-    "stars": 73,
+    "repos": 82,
+    "stars": 68,
     "languages": [
       {
         "name": "JavaScript",
-        "count": 38
+        "count": 36
       },
       {
         "name": "TypeScript",
-        "count": 18
+        "count": 17
       },
       {
         "name": "Python",
-        "count": 14
+        "count": 13
       },
       {
         "name": "Java",
         "count": 3
       },
       {
-        "name": "C++",
+        "name": "HTML",
         "count": 3
       }
     ],
@@ -65,24 +67,24 @@
         "desc": "Demos that record themselves — permission-free, on-device, agent-native "
       },
       {
-        "name": "agentreplay",
-        "stars": 3,
-        "lang": "JavaScript",
-        "desc": "Language-neutral trace protocol and replay harness for production AI age"
-      },
-      {
         "name": "Computer-Networks-Mini-Projects",
         "stars": 3,
         "lang": "Rust",
         "desc": "A repository for the team assignments given for socket cross platform pr"
+      },
+      {
+        "name": "hand-drawn-film",
+        "stars": 3,
+        "lang": "JavaScript",
+        "desc": "Agent skill for hand-drawn films in Canvas 2D (pencil, ink, riso, doodle"
       }
     ]
   },
   "lastPush": {
-    "repo": "purify-edge",
+    "repo": "halleylabs/tring",
     "message": null,
     "kind": "push",
-    "at": "2026-10-06T10:06:27Z"
+    "at": "2026-10-07T19:28:31Z"
   },
   "latestPost": {
     "title": "Witness Deep Dive: Building Verifiable Provenance fo",
@@ -90,8 +92,8 @@
   },
   "site": {
     "status": 200,
-    "ms": 218
+    "ms": 166
   },
   "streak": 7,
-  "total": 1001
+  "total": 993
 }
