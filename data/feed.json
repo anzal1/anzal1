@@ -1,6 +1,8 @@
 {
-  "refreshedAt": "2026-10-08T13:25:55.471Z",
-  "stale": [],
+  "refreshedAt": "2026-10-08T23:19:23.707Z",
+  "stale": [
+    "latestPost"
+  ],
   "activity": {
     "total": 213,
     "daily": [
@@ -14,9 +16,9 @@
     ]
   },
   "github": {
-    "followers": 44,
+    "followers": 45,
     "repos": 82,
-    "stars": 72,
+    "stars": 73,
     "languages": [
       {
         "name": "JavaScript",
@@ -82,7 +84,7 @@
     "repo": "halleylabs/halleylabs.github.io",
     "message": null,
     "kind": "push",
-    "at": "2026-10-07T19:51:27Z"
+    "at": "2026-10-07T11:59:36Z"
   },
   "latestPost": {
     "title": "Witness Deep Dive: Building Verifiable Provenance fo",
@@ -90,7 +92,7 @@
   },
   "site": {
     "status": 200,
-    "ms": 177
+    "ms": 221
   },
   "streak": 8,
   "total": 1005
