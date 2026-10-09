@@ -1,18 +1,16 @@
 {
-  "refreshedAt": "2026-10-08T23:19:23.707Z",
-  "stale": [
-    "latestPost"
-  ],
+  "refreshedAt": "2026-10-09T06:05:56.113Z",
+  "stale": [],
   "activity": {
-    "total": 213,
+    "total": 160,
     "daily": [
-      53,
       36,
       42,
       43,
       22,
       5,
-      12
+      12,
+      0
     ]
   },
   "github": {
@@ -81,10 +79,10 @@
     ]
   },
   "lastPush": {
-    "repo": "halleylabs/halleylabs.github.io",
+    "repo": "halleylabs/pact",
     "message": null,
     "kind": "push",
-    "at": "2026-10-07T11:59:36Z"
+    "at": "2026-10-07T19:28:29Z"
   },
   "latestPost": {
     "title": "Witness Deep Dive: Building Verifiable Provenance fo",
@@ -92,8 +90,8 @@
   },
   "site": {
     "status": 200,
-    "ms": 221
+    "ms": 141
   },
-  "streak": 8,
+  "streak": 0,
   "total": 1005
 }
