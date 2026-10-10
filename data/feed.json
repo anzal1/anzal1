@@ -1,8 +1,10 @@
 {
-  "refreshedAt": "2026-10-10T12:28:49.874Z",
-  "stale": [],
+  "refreshedAt": "2026-10-10T21:41:50.521Z",
+  "stale": [
+    "latestPost"
+  ],
   "activity": {
-    "total": 187,
+    "total": 206,
     "daily": [
       42,
       43,
@@ -10,13 +12,13 @@
       5,
       12,
       0,
-      63
+      82
     ]
   },
   "github": {
     "followers": 45,
     "repos": 83,
-    "stars": 73,
+    "stars": 74,
     "languages": [
       {
         "name": "JavaScript",
@@ -79,10 +81,10 @@
     ]
   },
   "lastPush": {
-    "repo": "jsdiff",
+    "repo": "samemark",
     "message": null,
     "kind": "push",
-    "at": "2026-10-10T03:24:18Z"
+    "at": "2026-10-10T16:02:23Z"
   },
   "latestPost": {
     "title": "Witness Deep Dive: Building Verifiable Provenance fo",
@@ -90,8 +92,8 @@
   },
   "site": {
     "status": 200,
-    "ms": 164
+    "ms": 163
   },
   "streak": 1,
-  "total": 1068
+  "total": 1087
 }
