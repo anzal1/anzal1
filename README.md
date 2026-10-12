@@ -35,11 +35,11 @@
 
 | Project | | What it is |
 | :-- | --: | :-- |
-| **[quicky-wiki](https://github.com/anzal1/quicky-wiki)** | ★ 23 | LLM knowledge compiler. Documents in, a confidence-scored knowledge graph out. Built from Karpathy's "LLM Wiki" idea. |
+| **[quicky-wiki](https://github.com/halleylabs/quicky-wiki)** | ★ 23 | LLM knowledge compiler. Documents in, a confidence-scored knowledge graph out. Built from Karpathy's "LLM Wiki" idea. |
 | **[ai-system-design](https://github.com/anzal1/ai-system-design)** | ★ 8 | Handbook for production AI systems: RAG, agents, evals, observability, cost, and the trade-offs between them. |
-| **[agentreplay](https://github.com/anzal1/agentreplay)** | ★ 3 | Failed agent runs become regression tests, with traces, side-effect diffs and release gates. Node, Python, Go. |
-| **[unclaude](https://github.com/anzal1/unclaude)** | ★ 3 | Autonomous AI agent with multi-provider routing, memory consolidation and a 24/7 daemon. |
-| **[pact](https://github.com/anzal1/pact)** | | Cryptographic identity for AI agents, with Ed25519 delegation chains and narrowing-only capabilities. |
+| **[agentreplay](https://github.com/halleylabs/agentreplay)** | ★ 3 | Failed agent runs become regression tests, with traces, side-effect diffs and release gates. Node, Python, Go. |
+| **[unclaude](https://github.com/halleylabs/unclaude)** | ★ 3 | Autonomous AI agent with multi-provider routing, memory consolidation and a 24/7 daemon. |
+| **[pact](https://github.com/halleylabs/pact)** | | Cryptographic identity for AI agents, with Ed25519 delegation chains and narrowing-only capabilities. |
 | **[Medusa AI](https://github.com/anzal1/Sih-2023-Frontend)** | 🏆 | Browser-first exam proctoring without surveillance theatre. **SIH 2023 national winner.** |
 
 ## Toolkit
