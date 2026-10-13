@@ -1,34 +1,36 @@
 {
-  "refreshedAt": "2026-10-12T15:19:29.166Z",
-  "stale": [],
+  "refreshedAt": "2026-10-13T00:37:31.173Z",
+  "stale": [
+    "latestPost"
+  ],
   "activity": {
-    "total": 126,
+    "total": 119,
     "daily": [
-      22,
       5,
       12,
       0,
-      82,
+      81,
       0,
-      5
+      17,
+      4
     ]
   },
   "github": {
     "followers": 45,
-    "repos": 83,
-    "stars": 74,
+    "repos": 77,
+    "stars": 27,
     "languages": [
       {
         "name": "JavaScript",
-        "count": 37
+        "count": 33
       },
       {
         "name": "TypeScript",
-        "count": 17
+        "count": 16
       },
       {
         "name": "Python",
-        "count": 13
+        "count": 12
       },
       {
         "name": "Java",
@@ -41,28 +43,10 @@
     ],
     "topRepos": [
       {
-        "name": "quicky-wiki",
-        "stars": 24,
-        "lang": "TypeScript",
-        "desc": "⚡ LLM-powered knowledge compiler — turn documents into a confidence-scor"
-      },
-      {
-        "name": "faultline",
-        "stars": 15,
-        "lang": "HTML",
-        "desc": "A living architecture map for any codebase, any language, any coding age"
-      },
-      {
         "name": "ai-system-design",
         "stars": 11,
         "lang": "Python",
         "desc": "A practical open-source guide to designing production AI systems: RAG, a"
-      },
-      {
-        "name": "voila",
-        "stars": 4,
-        "lang": "JavaScript",
-        "desc": "Demos that record themselves — permission-free, on-device, agent-native "
       },
       {
         "name": "Computer-Networks-Mini-Projects",
@@ -75,14 +59,32 @@
         "stars": 3,
         "lang": "JavaScript",
         "desc": "Agent skill for hand-drawn films in Canvas 2D (pencil, ink, riso, doodle"
+      },
+      {
+        "name": "Algorithms-2",
+        "stars": 1,
+        "lang": "C++",
+        "desc": "c++ and python implementation of algorithims (Both advanced and medium)"
+      },
+      {
+        "name": "Hashnode-clone",
+        "stars": 1,
+        "lang": "JavaScript",
+        "desc": "A daisy ui powered hashnode clone"
+      },
+      {
+        "name": "hush",
+        "stars": 1,
+        "lang": "JavaScript",
+        "desc": "Free internet radio above the Claude Code prompt. Music steps down when "
       }
     ]
   },
   "lastPush": {
-    "repo": "samemark",
+    "repo": "adk-go",
     "message": null,
     "kind": "push",
-    "at": "2026-10-12T10:08:33Z"
+    "at": "2026-10-12T09:32:52Z"
   },
   "latestPost": {
     "title": "Witness Deep Dive: Building Verifiable Provenance fo",
@@ -90,8 +92,8 @@
   },
   "site": {
     "status": 200,
-    "ms": 134
+    "ms": 216
   },
-  "streak": 1,
-  "total": 1080
+  "streak": 2,
+  "total": 1089
 }
