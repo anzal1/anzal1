@@ -1,8 +1,10 @@
 {
-  "refreshedAt": "2026-10-17T15:31:33.086Z",
-  "stale": [],
+  "refreshedAt": "2026-10-17T20:34:30.009Z",
+  "stale": [
+    "latestPost"
+  ],
   "activity": {
-    "total": 374,
+    "total": 375,
     "daily": [
       0,
       17,
@@ -10,13 +12,13 @@
       70,
       83,
       131,
-      47
+      48
     ]
   },
   "github": {
     "followers": 45,
     "repos": 78,
-    "stars": 29,
+    "stars": 31,
     "languages": [
       {
         "name": "JavaScript",
@@ -47,6 +49,12 @@
         "desc": "A practical open-source guide to designing production AI systems: RAG, a"
       },
       {
+        "name": "panoply",
+        "stars": 4,
+        "lang": "Rust",
+        "desc": "Every file tool in one open-source app. PDF, image, video, audio, OCR an"
+      },
+      {
         "name": "Computer-Networks-Mini-Projects",
         "stars": 3,
         "lang": "Rust",
@@ -57,12 +65,6 @@
         "stars": 3,
         "lang": "JavaScript",
         "desc": "Agent skill for hand-drawn films in Canvas 2D (pencil, ink, riso, doodle"
-      },
-      {
-        "name": "panoply",
-        "stars": 2,
-        "lang": "Rust",
-        "desc": "Every file tool in one open-source app. PDF, image, video, audio, OCR an"
       },
       {
         "name": "Algorithms-2",
@@ -82,7 +84,7 @@
     "repo": "panoply",
     "message": null,
     "kind": "push",
-    "at": "2026-10-16T17:51:40Z"
+    "at": "2026-10-16T16:43:54Z"
   },
   "latestPost": {
     "title": "Witness Deep Dive: Building Verifiable Provenance fo",
@@ -90,8 +92,8 @@
   },
   "site": {
     "status": 200,
-    "ms": 169
+    "ms": 171
   },
   "streak": 6,
-  "total": 1442
+  "total": 1443
 }
