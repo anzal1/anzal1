@@ -1,5 +1,5 @@
 {
-  "refreshedAt": "2026-10-17T10:40:49.380Z",
+  "refreshedAt": "2026-10-17T15:31:33.086Z",
   "stale": [],
   "activity": {
     "total": 374,
@@ -16,7 +16,7 @@
   "github": {
     "followers": 45,
     "repos": 78,
-    "stars": 28,
+    "stars": 29,
     "languages": [
       {
         "name": "JavaScript",
@@ -59,6 +59,12 @@
         "desc": "Agent skill for hand-drawn films in Canvas 2D (pencil, ink, riso, doodle"
       },
       {
+        "name": "panoply",
+        "stars": 2,
+        "lang": "Rust",
+        "desc": "Every file tool in one open-source app. PDF, image, video, audio, OCR an"
+      },
+      {
         "name": "Algorithms-2",
         "stars": 1,
         "lang": "C++",
@@ -69,12 +75,6 @@
         "stars": 1,
         "lang": "JavaScript",
         "desc": "A daisy ui powered hashnode clone"
-      },
-      {
-        "name": "hush",
-        "stars": 1,
-        "lang": "JavaScript",
-        "desc": "Free internet radio above the Claude Code prompt. Music steps down when "
       }
     ]
   },
@@ -82,7 +82,7 @@
     "repo": "panoply",
     "message": null,
     "kind": "push",
-    "at": "2026-10-16T17:04:08Z"
+    "at": "2026-10-16T17:51:40Z"
   },
   "latestPost": {
     "title": "Witness Deep Dive: Building Verifiable Provenance fo",
@@ -90,7 +90,7 @@
   },
   "site": {
     "status": 200,
-    "ms": 136
+    "ms": 169
   },
   "streak": 6,
   "total": 1442
