@@ -1,24 +1,22 @@
 {
-  "refreshedAt": "2026-10-18T11:01:09.749Z",
-  "stale": [
-    "latestPost"
-  ],
+  "refreshedAt": "2026-10-18T15:50:37.571Z",
+  "stale": [],
   "activity": {
-    "total": 390,
+    "total": 471,
     "daily": [
       17,
       26,
       70,
       83,
       131,
-      48,
-      15
+      54,
+      90
     ]
   },
   "github": {
     "followers": 45,
-    "repos": 78,
-    "stars": 33,
+    "repos": 79,
+    "stars": 34,
     "languages": [
       {
         "name": "JavaScript",
@@ -50,7 +48,7 @@
       },
       {
         "name": "panoply",
-        "stars": 6,
+        "stars": 7,
         "lang": "Rust",
         "desc": "Every file tool in one open-source app. PDF, image, video, audio, OCR an"
       },
@@ -84,7 +82,7 @@
     "repo": "panoply",
     "message": null,
     "kind": "push",
-    "at": "2026-10-18T09:24:24Z"
+    "at": "2026-10-18T08:09:17Z"
   },
   "latestPost": {
     "title": "Witness Deep Dive: Building Verifiable Provenance fo",
@@ -95,5 +93,5 @@
     "ms": 207
   },
   "streak": 7,
-  "total": 1458
+  "total": 1539
 }
