@@ -1,8 +1,10 @@
 {
-  "refreshedAt": "2026-10-20T17:01:01.814Z",
-  "stale": [],
+  "refreshedAt": "2026-10-20T21:35:25.309Z",
+  "stale": [
+    "latestPost"
+  ],
   "activity": {
-    "total": 479,
+    "total": 480,
     "daily": [
       70,
       83,
@@ -10,7 +12,7 @@
       54,
       103,
       37,
-      1
+      2
     ]
   },
   "github": {
@@ -82,7 +84,7 @@
     "repo": "panoply",
     "message": null,
     "kind": "push",
-    "at": "2026-10-18T15:03:49Z"
+    "at": "2026-10-18T17:51:58Z"
   },
   "latestPost": {
     "title": "Witness Deep Dive: Building Verifiable Provenance fo",
@@ -90,8 +92,8 @@
   },
   "site": {
     "status": 200,
-    "ms": 255
+    "ms": 136
   },
   "streak": 9,
-  "total": 1594
+  "total": 1595
 }
