@@ -1,8 +1,8 @@
 {
-  "refreshedAt": "2026-10-25T04:37:41.220Z",
+  "refreshedAt": "2026-10-25T11:23:14.584Z",
   "stale": [],
   "activity": {
-    "total": 49,
+    "total": 54,
     "daily": [
       37,
       2,
@@ -10,33 +10,33 @@
       0,
       0,
       8,
-      0
+      5
     ]
   },
   "github": {
-    "followers": 46,
-    "repos": 83,
-    "stars": 39,
+    "followers": 47,
+    "repos": 19,
+    "stars": 32,
     "languages": [
       {
         "name": "JavaScript",
-        "count": 35
-      },
-      {
-        "name": "TypeScript",
-        "count": 16
+        "count": 10
       },
       {
         "name": "Python",
-        "count": 12
+        "count": 2
       },
       {
-        "name": "Java",
-        "count": 3
+        "name": "Rust",
+        "count": 2
       },
       {
-        "name": "HTML",
-        "count": 3
+        "name": "TypeScript",
+        "count": 2
+      },
+      {
+        "name": "C",
+        "count": 2
       }
     ],
     "topRepos": [
@@ -59,30 +59,30 @@
         "desc": "Agent skill for hand-drawn films in Canvas 2D (pencil, ink, riso, doodle"
       },
       {
-        "name": "Computer-Networks-Mini-Projects",
-        "stars": 2,
-        "lang": "Rust",
-        "desc": "A repository for the team assignments given for socket cross platform pr"
-      },
-      {
-        "name": "Algorithms-2",
-        "stars": 1,
-        "lang": "C++",
-        "desc": "c++ and python implementation of algorithims (Both advanced and medium)"
-      },
-      {
         "name": "chariot",
         "stars": 1,
         "lang": "Rust",
         "desc": "A harness of harnesses: every AI agent you use pulls one load, with you "
+      },
+      {
+        "name": "copperplate",
+        "stars": 1,
+        "lang": "TypeScript",
+        "desc": "Turn any image into an engraved metal plate that catches a moving light,"
+      },
+      {
+        "name": "hush",
+        "stars": 1,
+        "lang": "JavaScript",
+        "desc": "Free internet radio above the Claude Code prompt. Music steps down when "
       }
     ]
   },
   "lastPush": {
-    "repo": "veloxpdf",
+    "repo": "oneglass",
     "message": null,
     "kind": "push",
-    "at": "2026-10-24T18:13:58Z"
+    "at": "2026-10-25T07:43:55Z"
   },
   "latestPost": {
     "title": "Witness Deep Dive: Building Verifiable Provenance fo",
@@ -90,8 +90,8 @@
   },
   "site": {
     "status": 200,
-    "ms": 61
+    "ms": 133
   },
-  "streak": 0,
-  "total": 1605
+  "streak": 2,
+  "total": 1610
 }
