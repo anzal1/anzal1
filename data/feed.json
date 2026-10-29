@@ -1,5 +1,5 @@
 {
-  "refreshedAt": "2026-10-29T12:57:06.240Z",
+  "refreshedAt": "2026-10-29T22:43:14.099Z",
   "stale": [],
   "activity": {
     "total": 19,
@@ -16,7 +16,7 @@
   "github": {
     "followers": 48,
     "repos": 21,
-    "stars": 34,
+    "stars": 37,
     "languages": [
       {
         "name": "JavaScript",
@@ -41,16 +41,16 @@
     ],
     "topRepos": [
       {
+        "name": "panoply",
+        "stars": 14,
+        "lang": "Rust",
+        "desc": "Every file tool in one open-source app. PDF, image, video, audio, OCR an"
+      },
+      {
         "name": "ai-system-design",
         "stars": 11,
         "lang": "Python",
         "desc": "A practical open-source guide to designing production AI systems: RAG, a"
-      },
-      {
-        "name": "panoply",
-        "stars": 11,
-        "lang": "Rust",
-        "desc": "Every file tool in one open-source app. PDF, image, video, audio, OCR an"
       },
       {
         "name": "hand-drawn-film",
@@ -79,10 +79,10 @@
     ]
   },
   "lastPush": {
-    "repo": "chariot",
+    "repo": "adk-go",
     "message": null,
     "kind": "push",
-    "at": "2026-10-26T15:43:28Z"
+    "at": "2026-10-28T19:56:27Z"
   },
   "latestPost": {
     "title": "Witness Deep Dive: Building Verifiable Provenance fo",
@@ -90,7 +90,7 @@
   },
   "site": {
     "status": 200,
-    "ms": 179
+    "ms": 202
   },
   "streak": 1,
   "total": 1589
