@@ -282,6 +282,10 @@
     <rect x="781" y="62" width="9" height="110" fill="#6f3418" shape-rendering="crispEdges"/>
     <rect x="781" y="62" width="9" height="5" fill="#7a3d1f" shape-rendering="crispEdges"/>
   </g>
+  <g opacity="1"><animate attributeName="opacity" calcMode="discrete" values="0;1" keyTimes="0;1" begin="1.55s" dur="0.05s" fill="freeze"/>
+    <rect x="792" y="167" width="9" height="5" fill="#d39e6b" shape-rendering="crispEdges"/>
+    <rect x="792" y="167" width="9" height="5" fill="#deb690" shape-rendering="crispEdges"/>
+  </g>
   <text x="708" y="54" font-family="'JetBrains Mono',ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace" font-size="10"
     fill="#55503f">peak 836 · Oct 2026</text>
 
