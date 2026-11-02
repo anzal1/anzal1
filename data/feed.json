@@ -1,50 +1,50 @@
 {
-  "refreshedAt": "2026-09-25T17:08:55.122Z",
+  "refreshedAt": "2026-11-02T05:58:19.695Z",
   "stale": [],
   "activity": {
-    "total": 78,
+    "total": 70,
     "daily": [
-      8,
-      7,
-      5,
-      3,
-      25,
-      3,
-      27
+      0,
+      0,
+      1,
+      0,
+      39,
+      30,
+      0
     ]
   },
   "github": {
-    "followers": 42,
-    "repos": 84,
-    "stars": 60,
+    "followers": 48,
+    "repos": 20,
+    "stars": 38,
     "languages": [
       {
         "name": "JavaScript",
-        "count": 34
-      },
-      {
-        "name": "TypeScript",
-        "count": 18
+        "count": 10
       },
       {
         "name": "Python",
-        "count": 13
-      },
-      {
-        "name": "Java",
         "count": 3
       },
       {
-        "name": "C++",
-        "count": 3
+        "name": "Rust",
+        "count": 2
+      },
+      {
+        "name": "TypeScript",
+        "count": 2
+      },
+      {
+        "name": "Handlebars",
+        "count": 1
       }
     ],
     "topRepos": [
       {
-        "name": "quicky-wiki",
-        "stars": 24,
-        "lang": "TypeScript",
-        "desc": "⚡ LLM-powered knowledge compiler — turn documents into a confidence-scor"
+        "name": "panoply",
+        "stars": 15,
+        "lang": "Rust",
+        "desc": "Every file tool in one open-source app. PDF, image, video, audio, OCR an"
       },
       {
         "name": "ai-system-design",
@@ -53,36 +53,36 @@
         "desc": "A practical open-source guide to designing production AI systems: RAG, a"
       },
       {
-        "name": "voila",
+        "name": "hand-drawn-film",
         "stars": 4,
         "lang": "JavaScript",
-        "desc": "Demos that record themselves — permission-free, on-device, agent-native "
+        "desc": "Agent skill for hand-drawn films in Canvas 2D (pencil, ink, riso, doodle"
       },
       {
-        "name": "agentreplay",
-        "stars": 3,
+        "name": "copperplate",
+        "stars": 1,
+        "lang": "TypeScript",
+        "desc": "Turn any image into an engraved metal plate that catches a moving light,"
+      },
+      {
+        "name": "hush",
+        "stars": 1,
         "lang": "JavaScript",
-        "desc": "Language-neutral trace protocol and replay harness for production AI age"
+        "desc": "Free internet radio above the Claude Code prompt. Music steps down when "
       },
       {
-        "name": "Computer-Networks-Mini-Projects",
-        "stars": 3,
-        "lang": "Rust",
-        "desc": "A repository for the team assignments given for socket cross platform pr"
-      },
-      {
-        "name": "unclaude",
-        "stars": 3,
-        "lang": "Python",
-        "desc": ""
+        "name": "oneglass",
+        "stars": 1,
+        "lang": "JavaScript",
+        "desc": "Flick files between your laptop and phone over the same Wi-Fi. The phone"
       }
     ]
   },
   "lastPush": {
-    "repo": "ax",
+    "repo": "panoply",
     "message": null,
     "kind": "push",
-    "at": "2026-09-25T16:56:46Z"
+    "at": "2026-10-31T12:25:48Z"
   },
   "latestPost": {
     "title": "Witness Deep Dive: Building Verifiable Provenance fo",
@@ -90,8 +90,8 @@
   },
   "site": {
     "status": 200,
-    "ms": 194
+    "ms": 128
   },
-  "streak": 13,
-  "total": 751
+  "streak": 0,
+  "total": 1618
 }

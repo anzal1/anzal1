@@ -35,12 +35,23 @@
 
 | Project | | What it is |
 | :-- | --: | :-- |
-| **[quicky-wiki](https://github.com/anzal1/quicky-wiki)** | ★ 23 | LLM knowledge compiler. Documents in, a confidence-scored knowledge graph out. Built from Karpathy's "LLM Wiki" idea. |
+| **[quicky-wiki](https://github.com/halleylabs/quicky-wiki)** | ★ 23 | LLM knowledge compiler. Documents in, a confidence-scored knowledge graph out. Built from Karpathy's "LLM Wiki" idea. |
 | **[ai-system-design](https://github.com/anzal1/ai-system-design)** | ★ 8 | Handbook for production AI systems: RAG, agents, evals, observability, cost, and the trade-offs between them. |
-| **[agentreplay](https://github.com/anzal1/agentreplay)** | ★ 3 | Failed agent runs become regression tests, with traces, side-effect diffs and release gates. Node, Python, Go. |
-| **[unclaude](https://github.com/anzal1/unclaude)** | ★ 3 | Autonomous AI agent with multi-provider routing, memory consolidation and a 24/7 daemon. |
-| **[pact](https://github.com/anzal1/pact)** | | Cryptographic identity for AI agents, with Ed25519 delegation chains and narrowing-only capabilities. |
-| **[Medusa AI](https://github.com/anzal1/Sih-2023-Frontend)** | 🏆 | Browser-first exam proctoring without surveillance theatre. **SIH 2023 national winner.** |
+| **[agentreplay](https://github.com/halleylabs/agentreplay)** | ★ 3 | Failed agent runs become regression tests, with traces, side-effect diffs and release gates. Node, Python, Go. |
+| **[unclaude](https://github.com/halleylabs/unclaude)** | ★ 3 | Autonomous AI agent with multi-provider routing, memory consolidation and a 24/7 daemon. |
+| **[pact](https://github.com/halleylabs/pact)** | | Cryptographic identity for AI agents, with Ed25519 delegation chains and narrowing-only capabilities. |
+| **Medusa AI** | 🏆 | Browser-first exam proctoring without surveillance theatre. **SIH 2023 national winner.** |
+
+## Upstream contributions
+
+| Project | What I fixed |
+| :-- | :-- |
+| **[pnpm](https://github.com/pnpm/pnpm/pulls?q=is%3Apr+author%3Aanzal1+is%3Amerged)** | 4 merged: lockfile keys kept away from prototype setters, tarballs indexed by their computed integrity |
+| **[google/adk-go](https://github.com/google/adk-go/pulls?q=is%3Apr+author%3Aanzal1+is%3Amerged)** | 4 merged: loop agent cancellation, artifact deltas lost from agent callbacks |
+| **[rolldown](https://github.com/rolldown/rolldown/pull/11181)** | Infinite `this.resolve` recursion between plugins |
+| **[oxc](https://github.com/oxc-project/oxc/pull/27533)** | `prefer-arrow-callback` false positive |
+| **[DOMPurify](https://github.com/cure53/DOMPurify/pulls?q=is%3Apr+author%3Aanzal1+is%3Amerged)** | Edge-runtime test runner and new DOM behaviour tests |
+| **[MCP Java SDK](https://github.com/modelcontextprotocol/java-sdk/pull/1193)** | Stricter Host/Origin matching |
 
 ## Toolkit
 
