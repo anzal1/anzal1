@@ -1,6 +1,6 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/scenery-dark.svg">
-  <img alt="Animated pixel-art landscape that runs through a full day on a loop, opening at golden hour with light rays over layered hills and a lake that mirrors the sky. Clouds drift, the water shimmers, smoke curls from a cabin whose window glows after dark, fireflies come out at dusk and a shooting star crosses the night. Mimi, a small black cat, sits on the near hill, swishing her tail, blinking slowly and turning her head toward the sunset or the moon." src="assets/scenery-light.svg" width="860">
+  <img alt="Animated pixel-art landscape that runs through a full day on a loop, opening at golden hour with a soft glow over layered hills and a lake that mirrors the sky. Clouds drift, the water shimmers, smoke curls from a cabin whose window glows after dark, fireflies come out at dusk and a shooting star crosses the night. Mimi, a small black cat, sits on the near hill, swishing her tail, blinking slowly and turning her head toward the sunset or the moon." src="assets/scenery-light.svg" width="860">
 </picture>
 
 <p align="center">
