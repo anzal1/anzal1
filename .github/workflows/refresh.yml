@@ -16,6 +16,7 @@ on:
       - 'scripts/plates.mjs'
       - 'scripts/contributions.mjs'
       - 'scripts/feed.mjs'
+      - 'scripts/scene/build.mjs'
       - 'data/profile.json'
       - 'data/portrait.json'
       - '.github/workflows/refresh.yml'

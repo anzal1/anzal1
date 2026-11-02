@@ -1,6 +1,6 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/scenery-dark.svg">
-  <img alt="Pixel-art scene after the Firewatch wallpaper that follows the time in Delhi: dawn with mist on the lake, dusk with the sun on the water, or night with a full moon and one lit cabin window. A pixel cat sits on the hill watching the sky. Signed AnzalHusainAbidi. New Delhi, 28.6 degrees north, 77.2 degrees east." src="assets/scenery-light.svg" width="860">
+  <img alt="Animated pixel-art landscape that runs through a full day on a loop, opening at golden hour with light rays over layered hills and a lake that mirrors the sky. Clouds drift, the water shimmers, smoke curls from a cabin whose window glows after dark, fireflies come out at dusk and a shooting star crosses the night. Mimi, a small black cat, sits on the near hill, swishing her tail, blinking slowly and turning her head toward the sunset or the moon." src="assets/scenery-light.svg" width="860">
 </picture>
 
 <p align="center">
@@ -13,7 +13,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/card-dark.svg">
-  <img alt="Terminal card. whoami: Anzal Abidi, Lead Forward Deployed Engineer at GUS. now: the AI platform for 30+ universities, AI gateway, model layer. prev: Kenverse, team lead on Kai voice AI; Zomato, Feeding India. oss: agentreplay, pact, unclaude, ai-system-design, quicky-wiki. wins: Smart India Hackathon 2023 national winner. base: New Delhi, remote." src="assets/card-light.svg" width="860">
+  <img alt="Terminal card. whoami: Anzal Abidi, Lead Forward Deployed Engineer at GUS. now: the AI platform for 30+ universities, AI gateway, model layer. prev: Kenverse, team lead on Kai voice AI; Zomato, Feeding India. oss: agentreplay, pact, unclaude, ai-system-design, quicky-wiki. wins: Smart India Hackathon 2023 national winner. base: Remote." src="assets/card-light.svg" width="860">
 </picture>
 
 <picture>
