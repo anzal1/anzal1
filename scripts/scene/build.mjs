@@ -344,19 +344,20 @@ function build(theme) {
     const op = track((t) => { const a = arc(SUN, t); return a.up ? smooth(0, 0.03, a.u) * (1 - smooth(0.97, 1, a.u)) : 0; }, 'opacity');
     const col = track((t) => mix('#f39a52', '#fff6e2', smooth(0.25, 0.85, sunElev(t))), 'fill');
     const warm = track((t) => 0.25 + 0.75 * lowSun(t), 'opacity');
-    defs.push(`<radialGradient id="sglow"><stop offset="0" stop-color="#fff2d6" stop-opacity=".7"/><stop offset=".25" stop-color="#ffe6bc" stop-opacity=".22"/><stop offset="1" stop-color="#ffe6bc" stop-opacity="0"/></radialGradient>`);
-    defs.push(`<radialGradient id="cglow"><stop offset="0" stop-color="#f0a060" stop-opacity=".55"/><stop offset=".4" stop-color="#c97a4e" stop-opacity=".2"/><stop offset="1" stop-color="#c97a4e" stop-opacity="0"/></radialGradient>`);
-    const rayOp = track((t) => { const a = arc(SUN, t); return a.up ? 0.75 * smooth(0.55, 0.78, a.u) * (1 - smooth(0.94, 0.99, a.u)) : 0; }, 'opacity');
-    defs.push(`<radialGradient id="rayG" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="620"><stop offset="0" stop-color="#ffe2b0" stop-opacity=".3"/><stop offset=".45" stop-color="#ffd09a" stop-opacity=".08"/><stop offset="1" stop-color="#ffd09a" stop-opacity="0"/></radialGradient>`);
-    let rays = '';
-    const rr = rng(2024);
-    for (let i = 0; i < 11; i++) {
-      const a = (-180 + 8 + i * 16 + rr() * 6) * Math.PI / 180, w = (2.2 + rr() * 2.6) * Math.PI / 180, R = 620;
-      const pt = (q) => `${r2(Math.cos(q) * R)},${r2(Math.sin(q) * R)}`;
-      const br = loop('0%,100%{opacity:.25}50%{opacity:1}', r2(5 + rr() * 5), r2(-rr() * 8), 'ease-in-out');
-      rays += `<polygon points="0,0 ${pt(a - w)} ${pt(a + w)}" fill="url(#rayG)" class="${br}"/>`;
+    defs.push(`<radialGradient id="sglow"><stop offset="0" stop-color="#fff2d6" stop-opacity=".5"/><stop offset=".25" stop-color="#ffe6bc" stop-opacity=".15"/><stop offset="1" stop-color="#ffe6bc" stop-opacity="0"/></radialGradient>`);
+    defs.push(`<radialGradient id="cglow"><stop offset="0" stop-color="#f0a060" stop-opacity=".42"/><stop offset=".4" stop-color="#c97a4e" stop-opacity=".15"/><stop offset="1" stop-color="#c97a4e" stop-opacity="0"/></radialGradient>`);
+    /* a soft pixel halo instead of rays: whole cells, ordered-dithered so it
+       thins out with distance, faint, breathing slowly */
+    const haloOp = track((t) => { const a = arc(SUN, t); return a.up ? 0.3 * smooth(0.5, 0.75, a.u) * (1 - smooth(0.94, 0.99, a.u)) : 0; }, 'opacity');
+    const B4 = [[0, 8, 2, 10], [12, 4, 14, 6], [3, 11, 1, 9], [15, 7, 13, 5]];
+    const halo = [[], []];
+    for (let y = -14; y <= 14; y++) for (let x = -14; x <= 14; x++) {
+      const d = Math.hypot(x, y * 1.15); if (d < 6.2 || d > 14) continue;
+      const k = Math.pow(1 - (d - 6.2) / 7.8, 1.6), th = B4[(y + 64) & 3][(x + 64) & 3] / 16;
+      if (th < k * 0.75) halo[d < 9 ? 0 : 1].push([x, y]);
     }
-    defs.push(`<g id="sun" class="${op}"><g class="${mv}"><g class="${rayOp}" shape-rendering="auto">${rays}</g><ellipse rx="230" ry="120" cx="2" cy="2" fill="url(#cglow)" class="${warm}"/><circle r="58" cx="2" cy="2" fill="url(#sglow)"/>${P(disc(5), col)}</g></g>`);
+    const hb = loop('0%,100%{opacity:.7}50%{opacity:1}', 11, -3, 'ease-in-out');
+    defs.push(`<g id="sun" class="${op}"><g class="${mv}"><g class="${haloOp}"><g class="${hb}">${P(halo[0], '', ' fill="#ffe2b0"')}${P(halo[1], '', ' fill="#ffd09a" opacity=".6"')}</g></g><ellipse rx="190" ry="96" cx="2" cy="2" fill="url(#cglow)" class="${warm}"/><circle r="44" cx="2" cy="2" fill="url(#sglow)"/>${P(disc(5), col)}</g></g>`);
     L.push('<use href="#sun"/>');
   }
 
@@ -542,7 +543,9 @@ function build(theme) {
     const skyRimOp = track((t) => 0.34 + 0.24 * nightness(t), 'opacity');
     const frontOp = track((t) => { const s = arc(SUN, t); return s.up && s.u > 0.55 ? 0.95 * smooth(0.55, 0.8, s.u) * (1 - smooth(0.985, 1, s.u)) : 0; }, 'opacity');
     const backOp = track((t) => { const s = arc(SUN, t); return s.up && s.u < 0.4 ? 0.8 * (1 - smooth(0.2, 0.4, s.u)) * smooth(0, 0.03, s.u) : 0; }, 'opacity');
-    const eyeCol = track((t) => mix('#c0803e', '#f0b664', nightness(t)), 'fill');
+    // the eyes only glow from dusk to dawn; by day they sit dark in her face
+    const eyeGlow = (t) => { t = ((t % 1) + 1) % 1; return t > 0.4 ? smooth(0.58, 0.64, t) : 1 - smooth(0.12, 0.16, t); };
+    const eyeCol = track((t) => mix('#221a15', mix('#c0803e', '#f0b664', nightness(t)), eyeGlow(t)), 'fill');
     const blink = loop('0%,88%{opacity:1}90%{opacity:.45}91.5%,95%{opacity:0}96.5%{opacity:.45}98%,100%{opacity:1}', 9, -2, 'step-end');
     function part(cells, eyes, cover = []) {
       const on = has(cells.concat(cover)), top = [], front = [], back = [];
@@ -597,7 +600,7 @@ function build(theme) {
 
   const line = theme === 'light' ? '#ddd6c8' : '#262320';
   const title = 'A day at the lake, with Mimi the cat watching';
-  const desc = 'An animated pixel-art landscape that runs through one full day on a slow loop, opening at golden hour. Light rays fan out from a low copper sun, the hills and lake turn warm, the sun sets, fireflies drift over the grass at dusk, a shooting star crosses the night under a rising moon, and morning brings a clear blue sky. Clouds drift, the lake shimmers with the mirrored sky and hills, grass sways, and smoke curls from a small cabin whose window glows after dark. Mimi, a small dark cat, sits on the near hill, swishing her tail, flicking an ear, blinking slowly and turning her head toward the sunset, the moon, or you.';
+  const desc = 'An animated pixel-art landscape that runs through one full day on a slow loop, opening at golden hour. A soft glow rings a low copper sun, the hills and lake turn warm, the sun sets, fireflies drift over the grass at dusk, a shooting star crosses the night under a rising moon, and morning brings a clear blue sky. Clouds drift, the lake shimmers with the mirrored sky and hills, grass sways, and smoke curls from a small cabin whose window glows after dark. Mimi, a small dark cat, sits on the near hill, swishing her tail, flicking an ear, blinking slowly and turning her head toward the sunset, the moon, or you.';
 
   return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-labelledby="ttl dsc">
 <title id="ttl">${title}</title><desc id="dsc">${desc}</desc>
