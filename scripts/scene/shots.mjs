@@ -8,11 +8,15 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 const { chromium } = await import(process.env.PW || 'playwright');
 const DIR = process.env.DIR || '.drafts/scene-v4', DUR = 90, START = 0.51;
 mkdirSync(`${DIR}/frames`, { recursive: true });
-const PHASES = (process.env.PHASES || '1open:0.51,2sunset:0.585,3dusk:0.65,4night:0.75,5shoot:0.8065,6dawn:0.125,7morning:0.2,8noon:0.32').split(',').map((s) => s.split(':'));
+const PHASES = (process.env.PHASES || '1open:0.51,2sunset:0.585,3dusk:0.65,4night:0.75,5shoot:0.8095,6dawn:0.125,7morning:0.2,8noon:0.32').split(',').map((s) => s.split(':'));
 const browser = await chromium.launch();
 const errors = [];
 for (const [name, t] of PHASES) {
-  const off = Math.round((((Number(t) - START) % 1 + 1) % 1) * DUR * 10) / 10;
+    // same warp as build.mjs: find the loop time that shows day-time t
+  const warp = (f) => f - 0.55 * Math.sin(2 * Math.PI * f) / (2 * Math.PI);
+  const g = (((Number(t) - START) % 1) + 1) % 1; let a = 0, b = 1;
+  for (let i = 0; i < 40; i++) { const m = (a + b) / 2; if (warp(m) < g) a = m; else b = m; }
+  const off = Math.round(a * DUR * 10) / 10;
   execFileSync('node', ['scripts/scene/build.mjs'], { env: { ...process.env, OFFSET: String(off), OUT: `${DIR}/svg` } });
   for (const theme of ['dark', 'light']) for (const w of [860, 390]) {
     const page = await browser.newPage({ viewport: { width: w + 32, height: Math.ceil(w * 360 / 860) + 32 }, deviceScaleFactor: 3, colorScheme: theme });

@@ -27,6 +27,12 @@ const DUR = 90;            // seconds for one day
 const N = 200;             // samples per day for keyed tracks
 const START = 0.51;        // the loop opens at golden hour, the best frame first
 const OFFSET = Number(process.env.OFFSET || 0);
+/* The loop clock is warped: time runs at 0.45x around the opening (golden
+   hour into sunset) and faster through midday and deep night, so the best
+   light lingers and the rest still reads as a full day. */
+const WARP = 0.55;
+const warp = (f) => f - WARP * Math.sin(2 * Math.PI * f) / (2 * Math.PI);
+const unwarp = (g) => { let a = 0, b = 1; for (let i = 0; i < 40; i++) { const m = (a + b) / 2; if (warp(m) < g) a = m; else b = m; } return (a + b) / 2; };
 const LAKE = 52;           // first lake row
 const r2 = (n) => Math.round(n * 100) / 100;
 const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
@@ -115,7 +121,7 @@ function track(fn, kind, { step = false } = {}) {
   const name = 'k' + (trackN++).toString(36);
   const vals = [];
   for (let i = 0; i <= N; i++) {
-    const t = START + ts(i);
+    const t = START + warp(ts(i));
     const v = fn(t);
     vals.push(kind === 'fill' ? `fill:${v}` : kind === 'opacity' ? `opacity:${r2(v)}` : `transform:translate(${Math.round(v[0])}px,${Math.round(v[1])}px)`);
   }
@@ -314,7 +320,7 @@ function build(theme) {
 
   /* one shooting star, once per loop, deep in the night */
   {
-    const p = r2(((0.8 - START) % 1 + 1) % 1 * 100);
+    const p = r2(unwarp(((0.8 - START) % 1 + 1) % 1) * 100);
     const a = [120 * CW, 6 * CW], b = [168 * CW, 22 * CW];
     const mv = loop(`0%,${p}%{opacity:0;transform:translate(${a[0]}px,${a[1]}px)}${r2(p + 0.15)}%{opacity:1}${r2(p + 1.0)}%{opacity:.9}${r2(p + 1.4)}%,100%{opacity:0;transform:translate(${b[0]}px,${b[1]}px)}`, DUR, 0, 'linear');
     defs.push(`<linearGradient id="trail" gradientUnits="userSpaceOnUse" x1="-72" y1="-24" x2="0" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff6e4" stop-opacity=".95"/></linearGradient>`);
