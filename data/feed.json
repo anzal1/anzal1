@@ -1,5 +1,5 @@
 {
-  "refreshedAt": "2026-11-04T06:15:02.248Z",
+  "refreshedAt": "2026-11-04T14:34:19.732Z",
   "stale": [],
   "activity": {
     "total": 77,
@@ -79,10 +79,10 @@
     ]
   },
   "lastPush": {
-    "repo": "adk-go",
+    "repo": "oxc",
     "message": null,
     "kind": "push",
-    "at": "2026-11-02T14:46:05Z"
+    "at": "2026-11-02T14:48:33Z"
   },
   "latestPost": {
     "title": "Witness Deep Dive: Building Verifiable Provenance fo",
@@ -90,7 +90,7 @@
   },
   "site": {
     "status": 200,
-    "ms": 246
+    "ms": 190
   },
   "streak": 0,
   "total": 1625
