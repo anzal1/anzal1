@@ -1,5 +1,5 @@
 {
-  "refreshedAt": "2026-11-20T07:10:29.440Z",
+  "refreshedAt": "2026-11-20T20:12:04.320Z",
   "stale": [],
   "activity": {
     "total": 286,
@@ -16,7 +16,7 @@
   "github": {
     "followers": 48,
     "repos": 22,
-    "stars": 50,
+    "stars": 51,
     "languages": [
       {
         "name": "JavaScript",
@@ -48,7 +48,7 @@
       },
       {
         "name": "ai-system-design",
-        "stars": 12,
+        "stars": 13,
         "lang": "Python",
         "desc": "A practical open-source guide to designing production AI systems: RAG, a"
       },
@@ -90,7 +90,7 @@
   },
   "site": {
     "status": 200,
-    "ms": 117
+    "ms": 194
   },
   "streak": 0,
   "total": 2174
