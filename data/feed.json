@@ -1,14 +1,14 @@
 {
-  "refreshedAt": "2026-11-21T19:12:17.958Z",
+  "refreshedAt": "2026-11-22T06:43:02.618Z",
   "stale": [],
   "activity": {
-    "total": 204,
+    "total": 74,
     "daily": [
-      130,
       61,
       12,
       0,
       1,
+      0,
       0,
       0
     ]
@@ -90,7 +90,7 @@
   },
   "site": {
     "status": 200,
-    "ms": 137
+    "ms": 100
   },
   "streak": 0,
   "total": 2174
